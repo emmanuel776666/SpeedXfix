@@ -1,5 +1,8 @@
 
+import "./Login.css";
+import { useState } from "react";
 function Login() {
+   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="containerlogin">
       <div className="div1login">
@@ -12,19 +15,44 @@ function Login() {
       </div>
         <div className="inputlogin">
       <div className="inputlogin1">
-        <label>Email</label>
-        <input type="email" placeholder="Enter your email"/>
-      </div>
-          <div className="inputlogin1">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"/>
+  <label>Email</label>
 
-            <div className="forgot-password">
-              <a href="/forgot-password">Forgot password?</a>
-              </div>
-        </div>
+  <div className="input-with-icon">
+    <span className="material-symbols-outlined">
+      mail
+    </span>
+
+    <input type="email" placeholder="Enter your email" />
+  </div>
+</div>
+          <div className="inputlogin1">
+  <label>Password</label>
+
+  <div className="input-with-icon">
+    <span className="material-symbols-outlined">
+      lock
+    </span>
+
+    <input
+      type={showPassword ? "text" : "password"}
+      placeholder="Enter your password"
+    />
+
+    <button
+      type="button"
+      className="password-toggle"
+      onClick={() => setShowPassword(!showPassword)}
+    >
+      <span className="material-symbols-outlined">
+        {showPassword ? "visibility_off" : "visibility"}
+      </span>
+    </button>
+  </div>
+
+  <div className="forgot-password">
+    <a href="/forgot-password">Forgot password?</a>
+  </div>
+</div>
         <button type="submit" className="loginsignin-btn">
         Sign in
       </button>
@@ -32,8 +60,37 @@ function Login() {
         </div>
         <div className="buttonlogin">
            <div className="login-option">
-            <div className="textoption">or</div>
-            <button className="google-signin-btn">Continue with Google</button>
+              <div className="or-divider">
+            <span></span>
+            <p>or</p>
+            <span></span>
+          </div>
+            <button className="google-signin-btn">
+  <svg
+    className="google-icon"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="#4285F4"
+      d="M21.35 12.27c0-.79-.07-1.55-.2-2.27H12v4.3h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.42z"
+    />
+    <path
+      fill="#34A853"
+      d="M12 21.5c2.63 0 4.84-.87 6.45-2.36l-3.14-2.45c-.87.58-1.98.92-3.31.92-2.54 0-4.69-1.72-5.46-4.03H3.3v2.53A9.75 9.75 0 0 0 12 21.5z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M6.54 13.58A5.86 5.86 0 0 1 6.23 12c0-.55.1-1.08.31-1.58V7.89H3.3A9.75 9.75 0 0 0 2.25 12c0 1.57.38 3.06 1.05 4.11l3.24-2.53z"
+    />
+    <path
+      fill="#EA4335"
+      d="M12 6.39c1.43 0 2.71.49 3.72 1.45l2.79-2.79C16.83 3.49 14.63 2.5 12 2.5a9.75 9.75 0 0 0-8.7 5.39l3.24 2.53C7.31 8.11 9.46 6.39 12 6.39z"
+    />
+  </svg>
+
+  Continue with Google
+</button>
            </div>
            <div className="signup-option-text">Don't have an account? <a href="/sign up">Sign up</a></div>
         </div>
