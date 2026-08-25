@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
 function Login() {
@@ -92,7 +92,7 @@ function Login() {
   Continue with Google
 </button>
            </div>
-           <div className="signup-option-text">Don't have an account? <a href="/sign up">Sign up</a></div>
+           <div className="signup-option-text">Don't have an account? <Link to="/signup">Sign up</Link></div>
         </div>
         </div>
       </div>

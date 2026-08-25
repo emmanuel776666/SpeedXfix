@@ -33,14 +33,15 @@ background-repeat: no-repeat;
 .nav-left {
   display: flex;
   align-items: center;
-  /* gap: px; */
+  gap: 5px;
 }
+
 
 .menu-button {
 
   background: none;
   border: none;
-  font-size: 180%;
+  font-size: 150%;
   cursor: pointer;
 }
 
@@ -57,9 +58,15 @@ background-repeat: no-repeat;
   align-items: center;
  
 }
+.nav-left img {
+  border: 2px solid #f59e0b;
+  width: 60%;
+
+}
 
 .navbar img {
   width: 60%;
+  
 }
 
 .nav-links {
@@ -146,13 +153,15 @@ background-repeat: no-repeat;
 }
 
 .trust-item h3 {
-  color: #000205;
+  color: #1d1f22;
   margin: 0 0 5px 0;
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .trust-item p {
   margin: 0;
+ font-weight: 600;
+ color: #484849;
   font-size: 8px;
   line-height: 1.5;
 }
@@ -231,7 +240,7 @@ background-repeat: no-repeat;
   margin: 0;
   font-size: 10px;
   font-weight: 500;
-  color: #374151;
+  color: #04080e;
 }
 
 .trust-shield {
@@ -298,4 +307,48 @@ background-repeat: no-repeat;
   color: #f59e0b;
   font-size: 15px;
   letter-spacing: 1px;
+}
+
+/* this for the trust features component  section in sign up page with icons and text */
+.trust-features-component {
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.trust-item-component {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust-icon-component {
+  width: 15px;
+  height: 15px;
+  /* background-color: #f97316; */
+  border: 1px solid;
+  color: #f97316;
+  border-radius: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.trust-item-component h3 {
+  color: #1d1f22;
+  margin: 0 0 5px 0;
+  font-size: 7px;
+  
+}
+
+.trust-item-component p {
+  margin: 0;
+ /* font-weight: 600; */
+ color: #1d1f22;
+  font-size: 6px;
+  /* line-height: 1; */
 }

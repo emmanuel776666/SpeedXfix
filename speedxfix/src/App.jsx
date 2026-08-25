@@ -7,6 +7,7 @@ import Hero from "./components/Hero";
 import ServiceCategories from "./components/ServiceCategories";
 import TrustSection from "./components/TrustSection";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function Home() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
       </Routes>
 
