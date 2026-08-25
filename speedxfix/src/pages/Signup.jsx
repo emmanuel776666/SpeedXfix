@@ -744,7 +744,7 @@ function Signup() {
                         >
                           <option value="">
                             {
-                              formData.state
+                              formData.location.state
                                 ? "Select your local government"
                                 : "Select a state first"
                             }
