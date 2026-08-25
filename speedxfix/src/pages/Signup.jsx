@@ -5,6 +5,7 @@ import TrustFeaturesComponent from "../components/TrustFeaturesComponent";
 import LogoComponent from "../components/LogoComponent";
 
 import serviceCategories from "../data/services";
+import nigeriaLocations from "../data/nigeriaLocations";
 
 import "./Signup.css";
 
@@ -20,45 +21,91 @@ function Signup() {
 
   // User information
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    surname: "",
-    phone: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  firstName: "",
+  lastName: "",
+  surname: "",
+  phone: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
 
+  work: {
     category: "",
     occupation: "",
-
-    nationality: "Nigeria",
-    state: "",
-    localGovernment: "",
-
     experienceLevel: ""
-  });
+  },
 
+  location: {
+    country: "Nigeria",
+    state: "",
+    localGovernment: ""
+  }
+});
 
   // Handle input changes
   function handleChange(event) {
+  const { name, value } = event.target;
 
-    const { name, value } = event.target;
-
+  // Personal information
+  if (
+    name === "firstName" ||
+    name === "lastName" ||
+    name === "surname" ||
+    name === "phone" ||
+    name === "email" ||
+    name === "password" ||
+    name === "confirmPassword"
+  ) {
     setFormData((previousData) => ({
       ...previousData,
       [name]: value
     }));
 
-    // If category changes, remove the old occupation
-    if (name === "category") {
-      setFormData((previousData) => ({
-        ...previousData,
-        category: value,
-        occupation: ""
-      }));
-    }
+    return;
   }
 
+  // Work information
+  if (
+    name === "category" ||
+    name === "occupation" ||
+    name === "experienceLevel"
+  ) {
+    setFormData((previousData) => ({
+      ...previousData,
+      work: {
+        ...previousData.work,
+        [name]: value,
+
+        // If category changes, remove old occupation
+        ...(name === "category" && {
+          occupation: ""
+        })
+      }
+    }));
+
+    return;
+  }
+
+  // Location information
+  if (
+    name === "country" ||
+    name === "state" ||
+    name === "localGovernment"
+  ) {
+    setFormData((previousData) => ({
+      ...previousData,
+      location: {
+        ...previousData.location,
+        [name]: value,
+
+        // If state changes, remove old LGA
+        ...(name === "state" && {
+          localGovernment: ""
+        })
+      }
+    }));
+  }
+}
 
   // Move from personal details to work details
   function handleContinue() {
@@ -527,7 +574,7 @@ function Signup() {
 
                       <select
                         name="category"
-                        value={formData.category}
+                        value={formData.work.category}
                         onChange={handleChange}
                       >
 
@@ -573,24 +620,24 @@ function Signup() {
 
                       <select
                         name="occupation"
-                        value={formData.occupation}
+                       value={formData.work.occupation}
                         onChange={handleChange}
-                        disabled={!formData.category}
+                        disabled={!formData.work.category}
                       >
 
                         <option value="">
                           {
-                            formData.category
+                            formData.work.category
                               ? "Select your occupation"
                               : "Select a category first"
                           }
                         </option>
 
                         {
-                          formData.category &&
+                          formData.work.category &&
                           serviceCategories[
-                            formData.category
-                          ].map((occupation) => (
+                          formData.work.category
+                        ].map((occupation) => (
 
                             <option
                               key={occupation}
@@ -624,8 +671,8 @@ function Signup() {
                       </span>
 
                       <select
-                        name="nationality"
-                        value={formData.nationality}
+                        name="country"
+                        value={formData.location.country}
                         onChange={handleChange}
                       >
 
@@ -654,19 +701,21 @@ function Signup() {
                         location_on
                       </span>
 
-                      <select
-                        name="state"
-                        value={formData.state}
-                        onChange={handleChange}
-                      >
+                     <select
+                            name="state"
+                            value={formData.location.state}
+                            onChange={handleChange}
+                          >
+                            <option value="">
+                              Select your state
+                            </option>
 
-                        <option value="">
-                          Select your state
-                        </option>
-
-                        {/* Nigeria states will go here */}
-
-                      </select>
+                            {Object.keys(nigeriaLocations).map((state) => (
+                              <option key={state} value={state}>
+                                {state}
+                              </option>
+                            ))}
+                          </select>
 
                     </div>
 
@@ -687,19 +736,31 @@ function Signup() {
                         location_city
                       </span>
 
-                      <select
-                        name="localGovernment"
-                        value={formData.localGovernment}
-                        onChange={handleChange}
-                      >
+                                              <select
+                          name="localGovernment"
+                          value={formData.location.localGovernment}
+                          onChange={handleChange}
+                          disabled={!formData.location.state}
+                        >
+                          <option value="">
+                            {
+                              formData.state
+                                ? "Select your local government"
+                                : "Select a state first"
+                            }
+                          </option>
 
-                        <option value="">
-                          Select your local government
+                        {formData.location.state &&
+                        nigeriaLocations[formData.location.state].map((localGovernment) => (
+                        <option
+                          key={localGovernment}
+                          value={localGovernment}
+                        >
+                          {localGovernment}
                         </option>
-
-                        {/* LGAs will be dynamically loaded here */}
-
-                      </select>
+                      ))
+                    }
+                        </select>
 
                     </div>
 
@@ -722,7 +783,7 @@ function Signup() {
 
                       <select
                         name="experienceLevel"
-                        value={formData.experienceLevel}
+                        value={formData.work.experienceLevel}
                         onChange={handleChange}
                       >
 

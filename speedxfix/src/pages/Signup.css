@@ -31,32 +31,8 @@ width: 92%;
   background-color: #ffffff;
   border: 2px solid rgb(10, 3, 3);
 }
-/* .signupdiv2{
-width: 85%;
-  height: 75%;
-  border: 2px solid rgb(10, 3, 3);
-  border-radius: 10px;
-  background-color: #ffffff;
-} */
-.signupdiv3{
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-width: 85%;
-  height: 8%;
-  background-color: #ffffff;
-  border: 2px solid rgb(10, 3, 3);
-}
-.sign-in-text-option{
- 
-  font-size: 10px;
-}
-.sign-in-text-option a{
-color: #f57c00;
-  text-decoration: none;
-  font-weight: 100;
-}
+
 
 /* =========================================
    SIGNUP FORM - INSIDE signupdiv2
@@ -79,7 +55,7 @@ color: #f57c00;
 /* Main form wrapper */
 
 .signup-form {
-  width: 100%;
+  width: 95%;
   height: 98%;
 border: 2px solid rgb(243, 68, 62);
   display: flex;
@@ -277,7 +253,7 @@ border: 2px solid rgb(243, 68, 62);
 
   background-color: #ffffff;
 
-  gap: 8px;
+  gap: 5px;
 }
 
 
@@ -490,13 +466,13 @@ border: 2px solid rgb(243, 68, 62);
 
   margin-top: 1px;
 
-  color: #98a2b3;
+  color: #7d838f;
 
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .signup-security .material-symbols-outlined {
-  font-size: 19px;
+  font-size: 13px;
 }
 
 
@@ -507,10 +483,31 @@ border: 2px solid rgb(243, 68, 62);
 .signup-name-row {
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 .signup-name-row .signup-input-group {
   flex: 1;
+}
+
+/* this is for the third div */
+.signupdiv3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+width: 85%;
+  height: 8%;
+  background-color: #ffffff;
+  border: 2px solid rgb(10, 3, 3);
+}
+.sign-in-text-option{
+ 
+  font-size: 10px;
+}
+.sign-in-text-option a{
+color: #f57c00;
+  text-decoration: none;
+  font-weight: 100;
 }
 /* =========================================
    MOBILE RESPONSIVENESS
