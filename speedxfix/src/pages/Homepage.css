@@ -1,0 +1,66 @@
+
+/* this is for homepage container */
+.containerhomepage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  border: 1px solid red;
+  background-color: #ffffff;
+box-sizing: border-box;
+}
+.divhomepageall{
+display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 10px);
+  margin-top: 10px;
+  border: 1px solid rgba(81, 24, 214, 0.705);
+  box-sizing: border-box;
+}
+.containerhomepage1{
+    width: 95%;
+  height: 30%;
+  border: 1px solid rgb(17, 4, 4);
+}
+.homepage-navbar{
+   width: 100%;
+  height: 15%;
+  border: 1px solid rgb(17, 4, 4);
+}
+.homepage-location{
+  width: 100%;
+  height: 10%;
+  border: 1px solid rgb(17, 4, 4);
+}
+
+.containerhomepage2{
+    width: 95%;
+  height: 10%;
+  border: 1px solid rgb(17, 4, 4);
+}
+.containerhomepage3{
+    width: 95%;
+  height: 15%;
+  border: 1px solid rgb(17, 4, 4);
+}
+.containerhomepage4{
+    width: 95%;
+  height: 15%;
+  border: 1px solid rgb(17, 4, 4);
+}
+.containerhomepage5{
+    width: 95%;
+  height: 15%;
+  border: 1px solid rgb(17, 4, 4);
+}
+.containerhomepage6{
+    width: 98%;
+  height: 6%;
+  border: 1px solid rgb(17, 4, 4);
+  
+}

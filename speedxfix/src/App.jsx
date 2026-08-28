@@ -1,13 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import heroImage from "./assets/hero.webp";
+
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ServiceCategories from "./components/ServiceCategories";
 import TrustSection from "./components/TrustSection";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Homepage from "./pages/Homepage";
 
 function Home() {
   return (
@@ -41,7 +42,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
+        <Route path="/homepage" element={<Homepage />} />
       </Routes>
 
     </BrowserRouter>
