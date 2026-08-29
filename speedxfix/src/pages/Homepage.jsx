@@ -1,6 +1,6 @@
 import "./Homepage.css";
 import LogoComponent from "../components/LogoComponent";
-import { Bell} from "lucide-react";
+import { Bell, MapPin, Search,ChevronDown} from "lucide-react";
 
 function Homepage () {
   return (
@@ -8,12 +8,7 @@ function Homepage () {
       <div className="divhomepageall">
 
         <div className="containerhomepage1">
-        {/* <div className="homepage-navbar">
-        <LogoComponent />
-        <div className="notification-profile">
-          
-        </div>
-        </div> */}
+       
                   <div className="homepage-navbar">
 
             <LogoComponent />
@@ -36,13 +31,74 @@ function Homepage () {
           </div>
          <div className="homepage-location">
 
-         </div>
-         <div className="homepage-text-image">
+          <button className="location-button">
 
-         </div>
+            <MapPin
+              className="location-icon"
+              size={20}
+              strokeWidth={2.5}
+            />
+
+            <span className="location-text">
+              Benin City, Edo State
+            </span>
+
+            <ChevronDown
+              className="location-arrow"
+              size={18}
+              strokeWidth={2}
+            />
+
+          </button>
+
+        </div>
+        <div className="homepage-text-image">
+
+            <div className="homepage-text">
+
+              <h1>
+                What job do
+                <br />
+                you need <span>done</span>?
+              </h1>
+
+              <p>
+                Find trusted professionals near you
+                <br />
+                and get the job done, fast.
+              </p>
+
+            </div>
+
+
+            <div className="homepage-worker-image">
+
+              <img
+                src="../public/speedxfix-image.jpeg"
+                alt="SpeedXFix professional"
+              />
+
+            </div>
+
+          </div>
          <div className="homepage-input">
 
-         </div>
+            <div className="search-box">
+
+              <Search size={22} strokeWidth={2} />
+
+              <input
+                type="text"
+                placeholder="Search for services (e.g. Plumbing, Cleaning...)"
+              />
+
+              <button>
+                Search
+              </button>
+
+            </div>
+
+          </div>
         </div>
 
 

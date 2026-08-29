@@ -21,7 +21,7 @@ min-height: 100vh;
   display: flex;
   flex-direction: column;
     width: 95%;
-  height: 300px;
+  height: 350px;
   margin-top: 10px;
   border: 2px solid rgb(31, 63, 204);
 }
@@ -110,11 +110,275 @@ min-height: 100vh;
 
   display: block;
 }
-.homepage-location{
+
+/* =========================
+   HOMEPAGE LOCATION
+========================= */
+
+.homepage-location {
+  display: flex;
+  align-items: center;
+
   width: 100%;
-  height: 30px;
-  border: 1px solid rgb(4, 17, 4);
+
+  padding: 10px 2px;
+
+  box-sizing: border-box;
+
+  border: 2px solid green;
 }
+
+
+/* Location button */
+
+.location-button {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #172033;
+}
+
+
+/* Location icon */
+
+.location-icon {
+  color: #f57c00;
+}
+
+
+/* Location text */
+
+.location-text {
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #172033;
+}
+
+
+/* Down arrow */
+
+.location-arrow {
+  margin-left: 2px;
+
+  color: #555;
+}
+/* =========================
+   HOMEPAGE TEXT + IMAGE
+========================= */
+
+.homepage-text-image {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+  width: 100%;
+  min-height: 200px;
+  /* padding: 15px 25px 0; */
+  box-sizing: border-box;
+  border: 2px solid rgb(20, 245, 76);
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.homepage-text {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  width: 58%;
+  border: 2px solid orange;
+}
+
+
+.homepage-text h1 {
+  margin: 0;
+
+  font-size: 32px;
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  color: #172033;
+}
+
+
+.homepage-text h1 span {
+  color: #f57c00;
+}
+
+
+.homepage-text p {
+  margin: 14px 0 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #555;
+}
+
+
+/* =========================
+   WORKER IMAGE
+========================= */
+
+.homepage-worker-image {
+  position: absolute;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  /* display: flex;
+  align-items: flex-end;
+  justify-content: flex-end; */
+  border: 2px solid rgb(248, 48, 165);
+}
+
+
+.homepage-worker-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* object-position: bottom right; */
+  display: block;
+}
+
+.homepage-input {
+  width: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
+}
+
+.search-box {
+  width: 100%;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+
+  padding: 0 10px 0 10px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+  box-sizing: border-box;
+}
+
+.search-box svg {
+  color: #777;
+  flex-shrink: 0;
+}
+
+.search-box input {
+  flex: 1;
+
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  padding: 0 12px;
+
+  font-size: 14px;
+}
+
+.search-box input::placeholder {
+  color: #888;
+}
+
+.search-box button {
+  height: 36px;
+  padding: 0 15px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #ff7200;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+  
+  .homepage-text h1 {
+  margin: 0;
+
+  font-size: 30px;
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  color: #172033;
+}
+.homepage-text p {
+  margin: 14px 0 0;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  color: #555;
+}
+
+.search-box input {
+  flex: 1;
+
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  padding: 0 8px;
+
+  font-size: 12px;
+}
+
+.search-box input::placeholder {
+  color: #888;
+}
+
+.search-box button {
+  height: 30px;
+  padding: 0 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #ff7200;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+}
+
 
 .containerhomepage2{
     width: 95%;
