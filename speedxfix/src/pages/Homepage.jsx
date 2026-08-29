@@ -74,7 +74,7 @@ function Homepage () {
             <div className="homepage-worker-image">
 
               <img
-                src="../public/speedxfix-image.jpeg"
+                src="/speedxfix-image.jpeg"
                 alt="SpeedXFix professional"
               />
 
