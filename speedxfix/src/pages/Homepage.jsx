@@ -1,6 +1,15 @@
 import "./Homepage.css";
 import LogoComponent from "../components/LogoComponent";
-import { Bell, MapPin, Search,ChevronDown} from "lucide-react";
+import { Bell,
+    MapPin,
+    Search,
+  Wrench,
+  Zap,
+  Sparkles,
+  Hammer,
+  Paintbrush,
+  MoreHorizontal,
+    ChevronDown} from "lucide-react";
 
 function Homepage () {
   return (
@@ -23,7 +32,7 @@ function Homepage () {
 
               {/* Small Profile */}
               <button className="profile-button">
-              <img src="https://i.pravatar.cc/300?img=12" alt="Profile" />
+              <img src="/speedxfix-image.jpeg" alt="Profile" />
             </button>
 
             </div>
@@ -102,14 +111,79 @@ function Homepage () {
         </div>
 
 
-        <div className="containerhomepage2">
-2
-        </div>
+       <div className="containerhomepage2">
 
+                <button className="quick-service">
+                  <Wrench size={27} />
+                  <span>Plumbing</span>
+                </button>
 
-        <div className="containerhomepage3">
-3
-        </div>
+                <button className="quick-service">
+                  <Zap size={27} />
+                  <span>Electrical</span>
+                </button>
+
+                <button className="quick-service">
+                  <Sparkles size={27} />
+                  <span>Cleaning</span>
+                </button>
+
+                <button className="quick-service">
+                  <Hammer size={27} />
+                  <span>Carpentry</span>
+                </button>
+
+                <button className="quick-service">
+                  <Paintbrush size={27} />
+                  <span>Painting</span>
+                </button>
+
+                <button className="quick-service">
+                  <MoreHorizontal size={27} />
+                  <span>More</span>
+                </button>
+
+              </div>
+
+                <div className="containerhomepage3">
+
+            <div className="popular-services-header">
+              <h2>Popular Services</h2>
+
+              <button className="view-all-button">
+                View all
+              </button>
+            </div>
+
+            <div className="popular-services-list">
+
+              <div className="service-card">
+                <img src="https://i.pravatar.cc/300?img=12" alt="Plumbing" />
+                <h3>Plumbing</h3>
+                <p>From ₦15,000</p>
+              </div>
+
+              <div className="service-card">
+                <img src="https://i.pravatar.cc/300?img=12" alt="Electrical" />
+                <h3>Electrical</h3>
+                <p>From ₦10,000</p>
+              </div>
+
+              <div className="service-card">
+                <img src="https://i.pravatar.cc/300?img=12" alt="Cleaning" />
+                <h3>Cleaning</h3>
+                <p>From ₦8,000</p>
+              </div>
+
+              <div className="service-card">
+                <img src="https://i.pravatar.cc/300?img=12" alt="Painting" />
+                <h3>Painting</h3>
+                <p>From ₦12,000</p>
+              </div>
+
+            </div>
+
+          </div>
 
 
         <div className="containerhomepage4">

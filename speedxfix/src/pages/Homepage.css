@@ -16,6 +16,7 @@ display: flex;
 min-height: 100vh;
   border: 1px solid rgba(81, 24, 214, 0.705);
   box-sizing: border-box;
+  padding-bottom: 60px;
 }
 .containerhomepage1{
   display: flex;
@@ -379,20 +380,139 @@ min-height: 100vh;
 
 }
 
+.containerhomepage2 {
+  width: 95%;
+  height: 70px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(91, 236, 23);
 
-.containerhomepage2{
-    width: 95%;
-  height: 300px;
-  border: 1px solid rgb(17, 4, 4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5px 10px;
+  box-sizing: border-box;
+
+  overflow: hidden;
 }
+
+.quick-service {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  width: 16%;
+  height: 100%;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #333;
+}
+
+.quick-service svg {
+  color: #f57c00;
+  background-color: #f0eded;
+  border-radius: 6px;
+}
+
+.quick-service span {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
 .containerhomepage3{
     width: 95%;
-  height: 150px;
+  height: 120px;
+  margin-top:10px ;
   border: 1px solid rgb(17, 4, 4);
+  box-sizing: border-box;
 }
+
+.popular-services-header {
+  width: 100%;
+  height: 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popular-services-header h2 {
+  margin: 0;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.view-all-button {
+  border: none;
+  background: none;
+
+  color: #f57c00;
+  font-size: 11px;
+
+  cursor: pointer;
+}
+.popular-services-list {
+  width: 100%;
+  height: 90px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.service-card {
+  width: 23%;
+  height: 90px;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+.service-card img {
+  width: 100%;
+  height: 60px;
+border-radius: 10px;
+  object-fit: cover;
+
+  display: block;
+}
+
+.service-card h3 {
+  margin: 4px 6px 0;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.service-card p {
+  margin: 2px 6px 0;
+
+  font-size: 8px;
+  font-weight: 300;
+  color: #0e0c0c;
+}
+
+
+
+
 .containerhomepage4{
     width: 95%;
   height: 15%;
+  margin-top: 10px;
   border: 1px solid rgb(17, 4, 4);
 }
 .containerhomepage5{
@@ -402,7 +522,7 @@ min-height: 100vh;
 }
 .containerhomepage6{
     width: 98%;
-  height: 50px;
+  height: 30px;
   border: 1px solid rgb(17, 4, 4);
   position: fixed;
   bottom: 0;
