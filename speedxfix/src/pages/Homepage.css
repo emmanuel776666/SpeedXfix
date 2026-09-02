@@ -380,52 +380,6 @@ min-height: 100vh;
 
 }
 
-.containerhomepage2 {
-  width: 95%;
-  height: 70px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: 1px solid rgb(91, 236, 23);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 5px 10px;
-  box-sizing: border-box;
-
-  overflow: hidden;
-}
-
-.quick-service {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  gap: 8px;
-
-  width: 16%;
-  height: 100%;
-
-  border: none;
-  background: transparent;
-
-  cursor: pointer;
-
-  color: #333;
-}
-
-.quick-service svg {
-  color: #f57c00;
-  background-color: #f0eded;
-  border-radius: 6px;
-}
-
-.quick-service span {
-  font-size: 11px;
-  white-space: nowrap;
-}
 
 .containerhomepage3{
     width: 95%;

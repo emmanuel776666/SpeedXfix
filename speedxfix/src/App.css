@@ -187,44 +187,8 @@ background-repeat: no-repeat;
   color: #111827;
 }
 
-.category-list {
-  display: flex;
-  justify-content: center;
-  gap: 4%;
-  flex-wrap: wrap;
-}
 
-.category {
-  height: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-}
-
-.category-icon {
-  width: 20px;
-  height: 20px;
-  
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid #eee0e0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 20px;
-  color: #f97316;
-}
-
-.category p {
-  margin-top: 2px;
-  font-size: 10px;
-  color: #111827;
-}
 /* this is trust-features style */
-
 
 .trust-section {
   /* height: 2px; */
@@ -247,30 +211,16 @@ background-repeat: no-repeat;
   color: #04080e;
 }
 
-.trust-shield {
-  width: 9px;
-  height: 8px;
+.trust-sheild-icon svg{
+  
+  color: #20f555;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  fill: #ffffff;
 
-  border: 3px solid #15803d;
-  color: #15803d;
+  stroke: #179733;
 
-  clip-path: polygon(
-    50% 0%,
-    90% 15%,
-    90% 55%,
-    75% 80%,
-    50% 100%,
-    25% 80%,
-    10% 55%,
-    10% 15%
-  );
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.08));
 
-  font-size: 8px;
-  font-weight: bold;
 }
 
 .trust-rating {
@@ -355,4 +305,57 @@ background-repeat: no-repeat;
  color: #1d1f22;
   font-size: 6px;
   /* line-height: 1; */
+}
+
+/* this is style for QuickserviceComponent */
+.containerhomepage2 {
+  width: 95%;
+  height: 70px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(91, 236, 23);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5px 10px;
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+.quick-service {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  width: 16%;
+  height: 100%;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #333;
+}
+
+.quick-service svg {
+  color: #f57c00;
+  background-color: #f0eded;
+  border-radius: 6px;
+}
+
+.quick-service span {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.Quickser{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
