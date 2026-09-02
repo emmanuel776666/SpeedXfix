@@ -8,9 +8,9 @@ const nigeriaLocations = {
     "Isiala Ngwa North",
     "Isiala Ngwa South",
     "Isuikwuato",
-    "Obi Ngwa",
+    "Obingwa",
     "Ohafia",
-    "Osisioma Ngwa",
+    "Osisioma",
     "Ugwunagbo",
     "Ukwa East",
     "Ukwa West",
@@ -25,6 +25,7 @@ const nigeriaLocations = {
     "Ganye",
     "Girei",
     "Gombi",
+    "Guyuk",
     "Hong",
     "Jada",
     "Lamurde",
@@ -139,7 +140,7 @@ const nigeriaLocations = {
     "Apa",
     "Ado",
     "Buruku",
-    "Gbajimba",
+    "Gboko",
     "Guma",
     "Gwer East",
     "Gwer West",
@@ -250,9 +251,9 @@ const nigeriaLocations = {
     "Ishielu",
     "Ivo",
     "Izzi",
+    "Ohaozara",
     "Ohaukwu",
-    "Onicha",
-    "Ohaozara"
+    "Onicha"
   ],
 
   Edo: [
@@ -277,7 +278,7 @@ const nigeriaLocations = {
   ],
 
   Ekiti: [
-    "Ado Ekiti",
+    "Ado-Ekiti",
     "Efon",
     "Ekiti East",
     "Ekiti South-West",
@@ -333,7 +334,7 @@ const nigeriaLocations = {
     "Aboh Mbaise",
     "Ahiazu Mbaise",
     "Ehime Mbano",
-    "Ezinihitte",
+    "Ezinihitte Mbaise",
     "Ideato North",
     "Ideato South",
     "Ihitte/Uboma",
@@ -341,7 +342,7 @@ const nigeriaLocations = {
     "Isiala Mbano",
     "Isu",
     "Mbaitoli",
-    "Ngor Okpala",
+    "Ngor-Okpala",
     "Njaba",
     "Nkwerre",
     "Nwangele",
@@ -349,14 +350,14 @@ const nigeriaLocations = {
     "Oguta",
     "Ohaji/Egbema",
     "Okigwe",
+    "Onuimo",
     "Orlu",
     "Orsu",
     "Oru East",
     "Oru West",
     "Owerri Municipal",
     "Owerri North",
-    "Owerri West",
-    "Unuimo"
+    "Owerri West"
   ],
 
   Jigawa: [
@@ -375,6 +376,7 @@ const nigeriaLocations = {
     "Hadejia",
     "Jahun",
     "Kafin Hausa",
+    "Kaugama",
     "Kazaure",
     "Kiri Kasama",
     "Kiyawa",
@@ -385,8 +387,7 @@ const nigeriaLocations = {
     "Roni",
     "Sule Tankarkar",
     "Taura",
-    "Yankwashi",
-    "Kaugama"
+    "Yankwashi"
   ],
 
   Kaduna: [
@@ -423,7 +424,7 @@ const nigeriaLocations = {
     "Bichi",
     "Bunkure",
     "Dala",
-    "Dambatta",
+    "Danbatta",
     "Dawakin Kudu",
     "Dawakin Tofa",
     "Doguwa",
@@ -469,9 +470,9 @@ const nigeriaLocations = {
     "Baure",
     "Bindawa",
     "Charanchi",
-    "Dan Musa",
     "Dandume",
     "Danja",
+    "Dan Musa",
     "Daura",
     "Dutsi",
     "Dutsin-Ma",
@@ -535,7 +536,6 @@ const nigeriaLocations = {
     "Ijumu",
     "Kabba/Bunu",
     "Kogi",
-    "Kogi Koton Karfe",
     "Lokoja",
     "Mopa-Muro",
     "Ofu",
@@ -562,9 +562,9 @@ const nigeriaLocations = {
     "Kaiama",
     "Moro",
     "Offa",
-    "Oke Ero",
+    "Oke-Ero",
     "Oyun",
-    "Pategi"
+    "Patigi"
   ],
 
   Lagos: [
@@ -600,7 +600,7 @@ const nigeriaLocations = {
     "Kokona",
     "Lafia",
     "Nasarawa",
-    "Nasarawa Eggon",
+    "Nasarawa-Eggon",
     "Obi",
     "Toto",
     "Wamba"
@@ -681,8 +681,8 @@ const nigeriaLocations = {
   Osun: [
     "Atakunmosa East",
     "Atakunmosa West",
-    "Ayedaade",
-    "Ayedire",
+    "Aiyedaade",
+    "Aiyedire",
     "Boluwaduro",
     "Boripe",
     "Ede North",
@@ -694,6 +694,7 @@ const nigeriaLocations = {
     "Ife North",
     "Ife South",
     "Ifedayo",
+    "Ifelodun",
     "Ila",
     "Ilesa East",
     "Ilesa West",
@@ -827,7 +828,7 @@ const nigeriaLocations = {
     "Ibi",
     "Jalingo",
     "Karim Lamido",
-    "Kumi",
+    "Kurmi",
     "Lau",
     "Sardauna",
     "Takum",
@@ -863,12 +864,9 @@ const nigeriaLocations = {
     "Birnin Magaji/Kiyaw",
     "Bukkuyum",
     "Bungudu",
-    "Chafe",
     "Gummi",
     "Gusau",
-    "Isa",
     "Kaura Namoda",
-    "Kiyawa",
     "Maradun",
     "Maru",
     "Shinkafi",
@@ -882,8 +880,8 @@ const nigeriaLocations = {
     "Bwari",
     "Gwagwalada",
     "Kuje",
-    "Municipal Area Council",
-    "Kwali"
+    "Kwali",
+    "Abuja Municipal Area Council (AMAC)"
   ]
 };
 
