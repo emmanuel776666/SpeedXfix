@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 import "./Profile.css";
-
+import { Link } from "react-router-dom";
 const stats = [
   {
     icon: Users,
@@ -87,7 +87,7 @@ const menuItems = [
 ];
 
 const navItems = [
-  { icon: Home, label: "Home" },
+  { icon: Home, label: "Home", path: "/homepage" },
   { icon: CalendarDays, label: "Bookings" },
   { icon: MessageSquare, label: "Messages" },
   { icon: Heart, label: "Favorites" },
@@ -307,20 +307,18 @@ export default function Profile() {
 
           const Icon = item.icon;
 
-          return (
-            <button
-              key={item.label}
-              className={`bottom-nav-item ${
-                item.active ? "active" : ""
-              }`}
-            >
-
-              <Icon size={27} strokeWidth={1.8} />
-
-              <span>{item.label}</span>
-
-            </button>
-          );
+         return (
+          <Link
+            key={item.label}
+            to={item.path}
+            className={`bottom-nav-item ${
+              item.active ? "active" : ""
+            }`}
+          >
+            <Icon size={27} strokeWidth={1.8} />
+            <span>{item.label}</span>
+          </Link>
+        );
         })}
 
       </nav>

@@ -827,15 +827,16 @@ function Signup() {
                     </button>
 
 
-                     <button
+                    
+                    <button
                       type="submit"
                       className="signup-continue-btn"
                     >
                          
                       <span>
-                        <Link to="/homepage">
+                        <Link to="/homepage"> 
                         Continue
-                        </Link>
+                          </Link>
                       </span>
 
                       <span className="material-symbols-outlined">
@@ -843,7 +844,7 @@ function Signup() {
                       </span>
 
                     </button>
-
+                  
                   </div>
 
                 </div>

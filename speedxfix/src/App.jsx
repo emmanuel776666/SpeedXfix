@@ -9,6 +9,7 @@ import TrustSection from "./components/TrustSection";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Homepage from "./pages/Homepage";
+import Profile from "./pages/Profile";
 
 function Home() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/homepage" element={<Homepage />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
 
     </BrowserRouter>

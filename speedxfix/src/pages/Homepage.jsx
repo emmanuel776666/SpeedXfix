@@ -1,20 +1,18 @@
+import { Link } from "react-router-dom";
 import "./Homepage.css";
 import LogoComponent from "../components/LogoComponent";
 import QuickserviceComponent from "../components/QuickserviceComponent";
 import { Bell,
     MapPin,
     Search,
-  Wrench,
-  Zap,
-  Sparkles,
-  Hammer,
-  Paintbrush,
    UserRound,
   CalendarDays,
   CircleCheck,
   ArrowRight,
-  MoreHorizontal,
    ShieldCheck,
+   House,
+MessageSquare,
+Heart,
     ChevronDown} from "lucide-react";
 
 function Homepage () {
@@ -328,9 +326,38 @@ function Homepage () {
               </div>
 
         <div className="containerhomepage6">
-          6
-        </div>
 
+                  {/* HOME */}
+                  <button className="bottom-nav-item active">
+                    <House size={22} strokeWidth={2} />
+                    <span>Home</span>
+                  </button>
+
+                  {/* BOOKINGS */}
+                  <button className="bottom-nav-item">
+                    <CalendarDays size={22} strokeWidth={2} />
+                    <span>Bookings</span>
+                  </button>
+
+                  {/* MESSAGES */}
+                  <button className="bottom-nav-item">
+                    <MessageSquare size={22} strokeWidth={2} />
+                    <span>Messages</span>
+                  </button>
+
+                  {/* FAVORITES */}
+                  <button className="bottom-nav-item">
+                    <Heart size={22} strokeWidth={2} />
+                    <span>Favorites</span>
+                  </button>
+
+                  {/* PROFILE */}
+                  <Link to="/profile" className="bottom-nav-item">
+                  <UserRound size={22} strokeWidth={2} />
+                  <span>Profile</span>
+                </Link>
+
+                </div>
         
       </div>
     </div>
