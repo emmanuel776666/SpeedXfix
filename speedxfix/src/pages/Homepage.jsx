@@ -36,7 +36,7 @@ function Homepage () {
 
               {/* Small Profile */}
               <button className="profile-button">
-              <img src="/speedxfix-image.jpeg" alt="Profile" />
+              <img src="/speedxfix-image.webp" alt="Profile" />
             </button>
 
             </div>
@@ -87,7 +87,7 @@ function Homepage () {
             <div className="homepage-worker-image">
 
               <img
-                src="/speedxfix-image.jpeg"
+                src="/speedxfix-image.webp"
                 alt="SpeedXFix professional"
               />
 
@@ -130,25 +130,25 @@ function Homepage () {
             <div className="popular-services-list">
 
               <div className="service-card">
-                <img src="/speedxfixplumbing.jpeg" alt="Plumbing" />
+                <img src="/speedxfixplumbing.webp" alt="Plumbing" />
                 <h3>Plumbing</h3>
                 <p>From ₦15,000</p>
               </div>
 
               <div className="service-card">
-                <img src="/speedxfixelect.jpeg" alt="Electrical" />
+                <img src="/speedxfixelect.webp" alt="Electrical" />
                 <h3>Electrical</h3>
                 <p>From ₦10,000</p>
               </div>
 
               <div className="service-card">
-                <img src="/speedxfixcleaning.jpeg" alt="Cleaning" />
+                <img src="/speedxfixcleaning.webp" alt="Cleaning" />
                 <h3>Cleaning</h3>
                 <p>From ₦8,000</p>
               </div>
 
               <div className="service-card">
-                <img src="/speedxfixpainting.jpeg" alt="Painting" />
+                <img src="/speedxfixpainting.webp" alt="Painting" />
                 <h3>Painting</h3>
                 <p>From ₦12,000</p>
               </div>
