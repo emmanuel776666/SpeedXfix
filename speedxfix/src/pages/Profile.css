@@ -813,6 +813,19 @@
   .bottom-nav-item span {
     font-size: 11px;
   }
+  .profile-description {
+  max-width: 100%;
+  margin-top: 7px;
+}
+
+.profile-description p {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.read-more-button {
+  font-size: 11px;
+}
 }
 
 @media (max-width: 430px) {
@@ -857,3 +870,47 @@ font-size: 10px;
     font-size: 19px;
   }
 }
+
+/* =========================
+   PROFILE DESCRIPTION
+========================= */
+
+.profile-description {
+  max-width: 520px;
+  margin-top: 9px;
+}
+
+.profile-description p {
+  margin: 0;
+
+  color: #687181;
+  font-size: 14px;
+  line-height: 1.5;
+
+display: -webkit-box;
+-webkit-box-orient: vertical;
+overflow: hidden;
+max-height: 42px;
+}
+
+.profile-description.expanded p {
+  max-height: none;
+}
+.read-more-button {
+  border: 0;
+  background: transparent;
+
+  padding: 0;
+  margin-top: 3px;
+
+  color: #ed682d;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.read-more-button:hover {
+  text-decoration: underline;
+}
+

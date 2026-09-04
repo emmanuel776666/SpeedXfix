@@ -256,13 +256,6 @@ border: 2px solid rgb(243, 68, 62);
 }
 
 
-/* Material icon */
-
-.signup-input-with-icon .material-symbols-outlined {
-  color: #667085;
-  font-size: 17px;
-  flex-shrink: 0;
-}
 
 
 /* Input */
@@ -385,10 +378,6 @@ border: 2px solid rgb(243, 68, 62);
   text-align: center;
 }
 
-.signup-continue-btn .material-symbols-outlined {
-  font-size: 25px;
-}
-
 
 /* Hover */
 
@@ -468,10 +457,6 @@ border: 2px solid rgb(243, 68, 62);
   color: #7d838f;
 
   font-size: 10px;
-}
-
-.signup-security .material-symbols-outlined {
-  font-size: 13px;
 }
 
 
@@ -566,15 +551,6 @@ color: #f57c00;
   object-fit: cover;
 }
 
-
-/* Default person icon */
-
-.profile-image-preview .material-symbols-outlined {
-  font-size: 38px;
-  color: #98a2b3;
-}
-
-
 /* =========================================
    CAMERA BUTTON
    ========================================= */
@@ -603,13 +579,6 @@ color: #f57c00;
   cursor: pointer;
 
   box-sizing: border-box;
-}
-
-
-/* Camera icon */
-
-.profile-camera-button .material-symbols-outlined {
-  font-size: 15px;
 }
 
 
@@ -712,4 +681,20 @@ color: #f57c00;
 .description-footer span:last-child {
   color: #f57c00;
   font-weight: 600;
+}
+
+.signup-input-with-icon svg {
+  color: #667085;
+  flex-shrink: 0;
+}
+
+.profile-image-preview svg {
+  color: #98a2b3;
+}
+.profile-camera-button svg {
+  color: #ffffff;
+}
+.signup-textarea-wrapper svg {
+  color: #667085;
+  flex-shrink: 0;
 }

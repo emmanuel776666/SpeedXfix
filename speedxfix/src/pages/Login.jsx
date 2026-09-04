@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 function Login() {
    const [showPassword, setShowPassword] = useState(false);
   return (
@@ -18,10 +19,7 @@ function Login() {
   <label>Email</label>
 
   <div className="input-with-icon">
-    <span className="material-symbols-outlined">
-      mail
-    </span>
-
+    <Mail size={20} />
     <input type="email" placeholder="Enter your email" />
   </div>
 </div>
@@ -29,9 +27,7 @@ function Login() {
   <label>Password</label>
 
   <div className="input-with-icon">
-    <span className="material-symbols-outlined">
-      lock
-    </span>
+    <Lock size={20} />
 
     <input
       type={showPassword ? "text" : "password"}
@@ -43,9 +39,7 @@ function Login() {
       className="password-toggle"
       onClick={() => setShowPassword(!showPassword)}
     >
-      <span className="material-symbols-outlined">
-        {showPassword ? "visibility_off" : "visibility"}
-      </span>
+      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
     </button>
   </div>
 

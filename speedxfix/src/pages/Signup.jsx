@@ -3,12 +3,29 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TrustFeaturesComponent from "../components/TrustFeaturesComponent";
 import LogoComponent from "../components/LogoComponent";
-
 import serviceCategories from "../data/services";
 import nigeriaLocations from "../data/nigeriaLocations";
 
 import "./Signup.css";
-
+import {
+  UserRound,
+  Phone,
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  ArrowLeft,
+  BriefcaseBusiness,
+  HardHat,
+  Globe,
+  MapPin,
+  Building2,
+  ChartNoAxesColumnIncreasing,
+  Camera,
+  FileText,
+  Check,
+} from "lucide-react";
 
 function Signup() {
 const navigate = useNavigate();
@@ -360,9 +377,7 @@ if (name === "description") {
 
                       <div className="signup-input-with-icon">
 
-                        <span className="material-symbols-outlined">
-                          person
-                        </span>
+                        <UserRound size={17} strokeWidth={2} />
 
                         <input
                           type="text"
@@ -385,9 +400,7 @@ if (name === "description") {
 
                       <div className="signup-input-with-icon">
 
-                        <span className="material-symbols-outlined">
-                          person
-                        </span>
+                        <UserRound size={17} strokeWidth={2} />
 
                         <input
                           type="text"
@@ -414,9 +427,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        person
-                      </span>
+                      <UserRound size={17} strokeWidth={2} />
 
                       <input
                         type="text"
@@ -441,9 +452,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        phone
-                      </span>
+                     <Phone size={17} strokeWidth={2} />
 
                       <input
                         type="tel"
@@ -468,9 +477,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        mail
-                      </span>
+                      <Mail size={17} strokeWidth={2} />
 
                       <input
                         type="email"
@@ -495,9 +502,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        lock
-                      </span>
+                      <Lock size={17} strokeWidth={2} />
 
                       <input
                         type={
@@ -519,15 +524,11 @@ if (name === "description") {
                         }
                       >
 
-                        <span className="material-symbols-outlined">
-
-                          {
-                            showPassword
-                              ? "visibility_off"
-                              : "visibility"
-                          }
-
-                        </span>
+                    {showPassword ? (
+                    <EyeOff size={17} strokeWidth={2} />
+                  ) : (
+                    <Eye size={17} strokeWidth={2} />
+                  )}
 
                       </button>
 
@@ -546,9 +547,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        lock
-                      </span>
+                      <Lock size={17} strokeWidth={2} />
 
                       <input
                         type={
@@ -572,15 +571,11 @@ if (name === "description") {
                         }
                       >
 
-                        <span className="material-symbols-outlined">
-
-                          {
-                            showConfirmPassword
-                              ? "visibility_off"
-                              : "visibility"
-                          }
-
-                        </span>
+                        {showConfirmPassword ? (
+                        <EyeOff size={17} strokeWidth={2} />
+                      ) : (
+                        <Eye size={17} strokeWidth={2} />
+                      )}
 
                       </button>
 
@@ -601,9 +596,7 @@ if (name === "description") {
                       Continue
                     </span>
 
-                    <span className="material-symbols-outlined">
-                      arrow_forward
-                    </span>
+                  <ArrowRight size={20} strokeWidth={2} />
 
                   </button>
 
@@ -643,9 +636,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        work
-                      </span>
+                     <BriefcaseBusiness size={17} strokeWidth={2} />
 
                       <select
                         name="category"
@@ -689,9 +680,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        engineering
-                      </span>
+                      <HardHat size={17} strokeWidth={2} />
 
                       <select
                         name="occupation"
@@ -741,10 +730,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        public
-                      </span>
-
+                   <Globe size={17} strokeWidth={2} />
                       <select
                         name="country"
                         value={formData.location.country}
@@ -772,9 +758,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        location_on
-                      </span>
+                      <MapPin size={17} strokeWidth={2} />
 
                      <select
                             name="state"
@@ -807,9 +791,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        location_city
-                      </span>
+                      <Building2 size={17} strokeWidth={2} />
 
                                               <select
                           name="localGovernment"
@@ -852,9 +834,7 @@ if (name === "description") {
 
                     <div className="signup-input-with-icon">
 
-                      <span className="material-symbols-outlined">
-                        signal_cellular_alt
-                      </span>
+                      <ChartNoAxesColumnIncreasing size={17} strokeWidth={2} />
 
                       <select
                         name="experienceLevel"
@@ -895,9 +875,7 @@ if (name === "description") {
                       onClick={handleBack}
                     >
 
-                      <span className="material-symbols-outlined">
-                        arrow_back
-                      </span>
+                     <ArrowLeft size={20} strokeWidth={2} />
 
                     </button>
 
@@ -913,9 +891,7 @@ if (name === "description") {
                          
                       </span>
 
-                      <span className="material-symbols-outlined">
-                        arrow_forward
-                      </span>
+                     <ArrowRight size={20} strokeWidth={2} />
 
                     </button>
                   
@@ -963,9 +939,7 @@ if (name === "description") {
 
       ) : (
 
-        <span className="material-symbols-outlined">
-          person
-        </span>
+       <UserRound size={38} strokeWidth={1.8} />
 
       )}
 
@@ -979,9 +953,7 @@ if (name === "description") {
       className="profile-camera-button"
     >
 
-      <span className="material-symbols-outlined">
-        photo_camera
-      </span>
+     <Camera size={16} strokeWidth={2} />
 
     </label>
 
@@ -1016,9 +988,7 @@ if (name === "description") {
 
   <div className="signup-textarea-wrapper">
 
-    <span className="material-symbols-outlined">
-      description
-    </span>
+    <FileText size={17} strokeWidth={2} />
 
     <textarea
       name="description"
@@ -1055,9 +1025,7 @@ if (name === "description") {
         onClick={handleBack}
       >
 
-        <span className="material-symbols-outlined">
-          arrow_back
-        </span>
+        <ArrowLeft size={20} strokeWidth={2} />
 
       </button>
 
@@ -1071,9 +1039,7 @@ if (name === "description") {
           Create Account
         </span>
 
-        <span className="material-symbols-outlined">
-          check
-        </span>
+        <Check size={20} strokeWidth={2} />
 
       </button>
 
@@ -1090,9 +1056,7 @@ if (name === "description") {
 
             <div className="signup-security">
 
-              <span className="material-symbols-outlined">
-                lock
-              </span>
+               <Lock size={12} strokeWidth={2} />
 
               <span>
                 Your information is secure with SpeedXFix

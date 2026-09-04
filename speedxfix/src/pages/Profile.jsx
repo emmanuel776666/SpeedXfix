@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useState } from "react";
 import {
   Menu,
   Bell,
@@ -94,7 +93,10 @@ const navItems = [
   { icon: UserRound, label: "Profile", active: true },
 ];
 
+
+
 export default function Profile() {
+  const [showDescription, setShowDescription] = useState(false);
   return (
     <div className="profile-page">
 
@@ -169,7 +171,21 @@ export default function Profile() {
               View and edit profile
               <ChevronRight size={18} />
             </button>
+            <div className={`profile-description ${showDescription ? "expanded" : ""}`}>
+  <p>
+    Experienced professional providing reliable plumbing and home repair
+    services. I focus on quality work, quick response, and customer
+    satisfaction. I make sure every job is completed properly and
+    professionally.
+  </p>
 
+  <button
+    className="read-more-button"
+    onClick={() => setShowDescription(!showDescription)}
+  >
+    {showDescription ? "Read less" : "Read more"}
+  </button>
+</div>
           </div>
 
         </div>
