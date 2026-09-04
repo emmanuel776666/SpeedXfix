@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
 
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import TrustFeaturesComponent from "../components/TrustFeaturesComponent";
 import LogoComponent from "../components/LogoComponent";
 
@@ -11,7 +11,7 @@ import "./Signup.css";
 
 
 function Signup() {
-
+const navigate = useNavigate();
   // Which signup page are we currently on?
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -20,7 +20,7 @@ function Signup() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // User information
-  const [formData, setFormData] = useState({
+ const [formData, setFormData] = useState({
   firstName: "",
   lastName: "",
   surname: "",
@@ -39,9 +39,28 @@ function Signup() {
     country: "Nigeria",
     state: "",
     localGovernment: ""
+  },
+
+  profile: {
+    image: null,
+    description: ""
   }
 });
 
+ // Handle image  changes
+function handleProfileImage(event) {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  setFormData((previousData) => ({
+    ...previousData,
+    profile: {
+      ...previousData.profile,
+      image: file
+    }
+  }));
+}
   // Handle input changes
   function handleChange(event) {
   const { name, value } = event.target;
@@ -85,7 +104,18 @@ function Signup() {
 
     return;
   }
+// Profile information
+if (name === "description") {
+  setFormData((previousData) => ({
+    ...previousData,
+    profile: {
+      ...previousData.profile,
+      description: value
+    }
+  }));
 
+  return;
+}
   // Location information
   if (
     name === "country" ||
@@ -110,29 +140,42 @@ function Signup() {
   // Move from personal details to work details
   function handleContinue() {
 
-    if (currentStep === 1) {
-      setCurrentStep(2);
-    }
+  if (currentStep === 1) {
+    setCurrentStep(2);
+    return;
   }
 
+  if (currentStep === 2) {
+    setCurrentStep(3);
+    return;
+  }
+}
 
   // Go back to personal details
   function handleBack() {
 
-    if (currentStep === 2) {
-      setCurrentStep(1);
-    }
+  if (currentStep === 3) {
+    setCurrentStep(2);
+    return;
   }
 
+  if (currentStep === 2) {
+    setCurrentStep(1);
+  }
+}
 
   // Submit the complete signup form
   function handleSubmit(event) {
 
-    event.preventDefault();
+  event.preventDefault();
 
-    console.log("SpeedXFix signup data:", formData);
+  console.log("SpeedXFix signup data:", formData);
 
-  }
+  // After the backend signup request succeeds,
+  // navigate the user to the homepage.
+
+  navigate("/homepage");
+}
 
 
   return (
@@ -186,63 +229,95 @@ function Signup() {
 
             <div className="signup-steps">
 
-              {/* STEP 1 */}
+                {/* STEP 1 */}
 
-              <div
-                className={`signup-step ${
-                  currentStep === 1
-                    ? "active"
-                    : "completed"
-                }`}
-              >
+                <div
+                  className={`signup-step ${
+                    currentStep === 1
+                      ? "active"
+                      : "completed"
+                  }`}
+                >
 
-                <div className="step-circle">
+                  <div className="step-circle">
+                    {currentStep === 1 ? "1" : "✓"}
+                  </div>
 
-                  {currentStep === 1 ? "1" : "✓"}
-
-                </div>
-
-                <span>
-                  Personal Details
-                </span>
-
-              </div>
-
-
-              {/* LINE */}
-
-              <div
-                className={`step-line ${
-                  currentStep === 2
-                    ? "step-line-active"
-                    : ""
-                }`}
-              ></div>
-
-
-              {/* STEP 2 */}
-
-              <div
-                className={`signup-step ${
-                  currentStep === 2
-                    ? "active"
-                    : ""
-                }`}
-              >
-
-                <div className="step-circle">
-
-                  2
+                  <span>
+                    Personal Details
+                  </span>
 
                 </div>
 
-                <span>
-                  Work Details
-                </span>
+
+                {/* LINE 1 */}
+
+                <div
+                  className={`step-line ${
+                    currentStep >= 2
+                      ? "step-line-active"
+                      : ""
+                  }`}
+                ></div>
+
+
+                {/* STEP 2 */}
+
+                <div
+                  className={`signup-step ${
+                    currentStep === 2
+                      ? "active"
+                      : currentStep > 2
+                      ? "completed"
+                      : ""
+                  }`}
+                >
+
+                  <div className="step-circle">
+
+                    {currentStep > 2 ? "✓" : "2"}
+
+                  </div>
+
+                  <span>
+                    Work Details
+                  </span>
+
+                </div>
+
+
+                {/* LINE 2 */}
+
+                <div
+                  className={`step-line ${
+                    currentStep === 3
+                      ? "step-line-active"
+                      : ""
+                  }`}
+                ></div>
+
+
+                {/* STEP 3 */}
+
+                <div
+                  className={`signup-step ${
+                    currentStep === 3
+                      ? "active"
+                      : ""
+                  }`}
+                >
+
+                  <div className="step-circle">
+                    3
+                  </div>
+
+                  <span>
+                    Profile
+                  </span>
+
+                </div>
 
               </div>
-
-            </div>
 
 
             {/* =========================
@@ -829,14 +904,13 @@ function Signup() {
 
                     
                     <button
-                      type="submit"
-                      className="signup-continue-btn"
-                    >
-                         
-                      <span>
-                        <Link to="/homepage"> 
+                    type="button"
+                    className="signup-continue-btn"
+                    onClick={handleContinue} >   
+                          <span>
+                        
                         Continue
-                          </Link>
+                         
                       </span>
 
                       <span className="material-symbols-outlined">
@@ -850,6 +924,144 @@ function Signup() {
                 </div>
 
               )}
+
+              {/* ==================================
+    STEP 3 — PROFILE
+================================== */}
+
+{currentStep === 3 && (
+
+  <div className="signup-step-content">
+
+    <div className="signup-section-heading">
+
+      <h2>
+        Create Your Profile
+      </h2>
+
+      <p>
+        Add a photo and tell customers about yourself and your work.
+      </p>
+
+    </div>
+
+
+    {/* PROFILE IMAGE */}
+
+    <div className="profile-upload-section">
+
+      <div className="profile-image-preview">
+
+        {formData.profile.image ? (
+
+          <img
+            src={URL.createObjectURL(formData.profile.image)}
+            alt="Profile preview"
+          />
+
+        ) : (
+
+          <span className="material-symbols-outlined">
+            person
+          </span>
+
+        )}
+
+      </div>
+
+
+      <label
+        htmlFor="profile-image"
+        className="profile-upload-button"
+      >
+
+        <span className="material-symbols-outlined">
+          upload
+        </span>
+
+        Choose Profile Photo
+
+      </label>
+
+
+      <input
+        id="profile-image"
+        type="file"
+        accept="image/*"
+        onChange={handleProfileImage}
+        hidden
+      />
+
+      <p className="profile-upload-hint">
+        Upload a clear photo of yourself.
+      </p>
+
+    </div>
+
+
+    {/* DESCRIPTION */}
+
+    <div className="signup-input-group">
+
+      <label>
+        About You & Your Work
+      </label>
+
+      <div className="signup-textarea-wrapper">
+
+        <span className="material-symbols-outlined">
+          description
+        </span>
+
+        <textarea
+          name="description"
+          placeholder="Tell customers about yourself, your skills and the work you provide..."
+          value={formData.profile.description}
+          onChange={handleChange}
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    {/* BACK + FINISH */}
+
+    <div className="signup-buttons-row">
+
+      <button
+        type="button"
+        className="signup-back-btn"
+        onClick={handleBack}
+      >
+
+        <span className="material-symbols-outlined">
+          arrow_back
+        </span>
+
+      </button>
+
+
+      <button
+        type="submit"
+        className="signup-continue-btn"
+      >
+
+        <span>
+          Create Account
+        </span>
+
+        <span className="material-symbols-outlined">
+          check
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+)}
 
             </form>
 

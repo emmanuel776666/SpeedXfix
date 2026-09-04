@@ -508,83 +508,147 @@ color: #f57c00;
   text-decoration: none;
   font-weight: 100;
 }
+
 /* =========================================
-   MOBILE RESPONSIVENESS
+   STEP 3 — PROFILE IMAGE
    ========================================= */
 
-/* @media (max-width: 700px) {
+.profile-upload-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
 
-  .signupdiv2 {
-    width: 92%;
-    height: 78%;
-  }
+/* Profile image circle */
+.profile-image-preview {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: #f1f2f4;
+  border: 2px solid #f57c00;
 
-  .signup-form {
-    width: 88%;
-    height: 94%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  .signup-heading h1 {
-    font-size: 25px;
-  }
+  overflow: hidden;
+  margin-bottom: 7px;
+}
 
-  .signup-heading p {
-    font-size: 13px;
-  }
+/* Image inside the circle */
+.profile-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  .signup-steps {
-    margin-bottom: 20px;
-  }
+/* Default person icon */
+.profile-image-preview .material-symbols-outlined {
+  font-size: 35px;
+  color: #98a2b3;
+}
 
-  .signup-step {
-    font-size: 12px;
-  }
+/* Choose photo button */
+.profile-upload-button {
+  height: 32px;
+  padding: 0 14px;
 
-  .step-circle {
-    width: 35px;
-    height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 
-    font-size: 15px;
-  }
+  background-color: #fff3e8;
+  color: #f57c00;
 
-  .step-line {
-    margin: 0 10px;
-  }
+  border: 1px solid #f57c00;
+  border-radius: 7px;
 
-  .signup-section-heading h2 {
-    font-size: 20px;
-  }
+  font-size: 10px;
+  font-weight: 600;
 
-  .signup-section-heading p {
-    font-size: 13px;
-  }
+  cursor: pointer;
+}
 
-  .signup-name-row {
-    flex-direction: column;
+/* Upload icon */
+.profile-upload-button .material-symbols-outlined {
+  font-size: 16px;
+}
 
-    gap: 0;
-  }
+/* Hover */
+.profile-upload-button:hover {
+  background-color: #f57c00;
+  color: #ffffff;
+}
 
-  .signup-input-group {
-    margin-bottom: 12px;
-  }
+/* Small instruction text */
+.profile-upload-hint {
+  margin: 4px 0 0;
+  font-size: 8px;
+  color: #7d838f;
+  text-align: center;
+}
 
-  .signup-input-with-icon {
-    height: 46px;
-  }
 
-  .signup-continue-btn {
-    min-height: 47px;
+/* =========================================
+   STEP 3 — DESCRIPTION
+   ========================================= */
 
-    font-size: 15px;
-  }
+.signup-textarea-wrapper {
+  width: 100%;
+  min-height: 80px;
 
-  .signup-back-btn {
-    height: 47px;
-    width: 50px;
-  }
+  display: flex;
+  align-items: flex-start;
 
-  .signup-security {
-    font-size: 11px;
-  }
-} */
+  box-sizing: border-box;
+
+  border: 1.5px solid #d9d9d9;
+  border-radius: 8px;
+
+  padding: 9px 13px;
+
+  background-color: #ffffff;
+
+  gap: 5px;
+}
+
+/* Description icon */
+.signup-textarea-wrapper .material-symbols-outlined {
+  color: #667085;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+/* Textarea */
+.signup-textarea-wrapper textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 60px;
+
+  border: none;
+  outline: none;
+  resize: none;
+
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 10px;
+  color: #020305;
+
+  box-sizing: border-box;
+}
+
+/* Placeholder */
+.signup-textarea-wrapper textarea::placeholder {
+  color: #5b6068;
+}
+
+/* Focus effect */
+.signup-textarea-wrapper:focus-within {
+  border-color: #f57c00;
+  box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.08);
+}
