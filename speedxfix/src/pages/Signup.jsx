@@ -948,81 +948,101 @@ if (name === "description") {
 
     {/* PROFILE IMAGE */}
 
-    <div className="profile-upload-section">
+<div className="profile-upload-section">
 
-      <div className="profile-image-preview">
+  <div className="profile-image-container">
 
-        {formData.profile.image ? (
+    <div className="profile-image-preview">
 
-          <img
-            src={URL.createObjectURL(formData.profile.image)}
-            alt="Profile preview"
-          />
+      {formData.profile.image ? (
 
-        ) : (
+        <img
+          src={URL.createObjectURL(formData.profile.image)}
+          alt="Profile preview"
+        />
 
-          <span className="material-symbols-outlined">
-            person
-          </span>
-
-        )}
-
-      </div>
-
-
-      <label
-        htmlFor="profile-image"
-        className="profile-upload-button"
-      >
+      ) : (
 
         <span className="material-symbols-outlined">
-          upload
+          person
         </span>
 
-        Choose Profile Photo
-
-      </label>
-
-
-      <input
-        id="profile-image"
-        type="file"
-        accept="image/*"
-        onChange={handleProfileImage}
-        hidden
-      />
-
-      <p className="profile-upload-hint">
-        Upload a clear photo of yourself.
-      </p>
+      )}
 
     </div>
+
+
+    {/* CAMERA BUTTON */}
+
+    <label
+      htmlFor="profile-image"
+      className="profile-camera-button"
+    >
+
+      <span className="material-symbols-outlined">
+        photo_camera
+      </span>
+
+    </label>
+
+
+    {/* HIDDEN FILE INPUT */}
+
+    <input
+      id="profile-image"
+      type="file"
+      accept="image/*"
+      onChange={handleProfileImage}
+      hidden
+    />
+
+  </div>
+
+
+  <p className="profile-upload-hint">
+    Add a clear profile photo
+  </p>
+
+</div>
 
 
     {/* DESCRIPTION */}
 
-    <div className="signup-input-group">
+<div className="signup-input-group">
 
-      <label>
-        About You & Your Work
-      </label>
+  <label>
+    About You & Your Work
+  </label>
 
-      <div className="signup-textarea-wrapper">
+  <div className="signup-textarea-wrapper">
 
-        <span className="material-symbols-outlined">
-          description
-        </span>
+    <span className="material-symbols-outlined">
+      description
+    </span>
 
-        <textarea
-          name="description"
-          placeholder="Tell customers about yourself, your skills and the work you provide..."
-          value={formData.profile.description}
-          onChange={handleChange}
-        ></textarea>
+    <textarea
+      name="description"
+      placeholder="Tell customers about yourself, your skills and the work you provide..."
+      value={formData.profile.description}
+      onChange={handleChange}
+      maxLength={300}
+    ></textarea>
 
-      </div>
+  </div>
 
-    </div>
+  <div className="description-footer">
+
+    <span>
+      Tell customers about your skills and experience.
+    </span>
+
+    <span>
+      {formData.profile.description.length}/300
+    </span>
+
+  </div>
+
+</div>
 
 
     {/* BACK + FINISH */}

@@ -168,7 +168,7 @@ border: 2px solid rgb(243, 68, 62);
 .step-line {
   height: 2px;
   flex: 1;
-  margin: 0 20px;
+  margin: 0 10px;
   background-color: #e5e7eb;
   border-radius: 10px;
 }
@@ -515,19 +515,36 @@ color: #f57c00;
 
 .profile-upload-section {
   width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   margin-bottom: 8px;
 }
 
+
+/* Image + camera button container */
+
+.profile-image-container {
+  position: relative;
+
+  width: 78px;
+  height: 78px;
+}
+
+
 /* Profile image circle */
+
 .profile-image-preview {
-  width: 75px;
-  height: 75px;
+  width: 78px;
+  height: 78px;
+
   border-radius: 50%;
+
   background-color: #f1f2f4;
+
   border: 2px solid #f57c00;
 
   display: flex;
@@ -535,63 +552,85 @@ color: #f57c00;
   align-items: center;
 
   overflow: hidden;
-  margin-bottom: 7px;
+
+  box-sizing: border-box;
 }
 
-/* Image inside the circle */
+
+/* Uploaded image */
+
 .profile-image-preview img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
+
 /* Default person icon */
+
 .profile-image-preview .material-symbols-outlined {
-  font-size: 35px;
+  font-size: 38px;
   color: #98a2b3;
 }
 
-/* Choose photo button */
-.profile-upload-button {
-  height: 32px;
-  padding: 0 14px;
+
+/* =========================================
+   CAMERA BUTTON
+   ========================================= */
+
+.profile-camera-button {
+  position: absolute;
+
+  right: -2px;
+  bottom: -2px;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+
+  background-color: #f57c00;
+
+  color: #ffffff;
+
+  border: 2px solid #ffffff;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-
-  background-color: #fff3e8;
-  color: #f57c00;
-
-  border: 1px solid #f57c00;
-  border-radius: 7px;
-
-  font-size: 10px;
-  font-weight: 600;
 
   cursor: pointer;
+
+  box-sizing: border-box;
 }
 
-/* Upload icon */
-.profile-upload-button .material-symbols-outlined {
-  font-size: 16px;
+
+/* Camera icon */
+
+.profile-camera-button .material-symbols-outlined {
+  font-size: 15px;
 }
 
-/* Hover */
-.profile-upload-button:hover {
-  background-color: #f57c00;
-  color: #ffffff;
+
+/* Camera hover */
+
+.profile-camera-button:hover {
+  background-color: #ed6b00;
 }
 
-/* Small instruction text */
+
+/* Upload instruction */
+
 .profile-upload-hint {
-  margin: 4px 0 0;
+  margin: 5px 0 0;
+
   font-size: 8px;
+
   color: #7d838f;
+
   text-align: center;
 }
-
 
 /* =========================================
    STEP 3 — DESCRIPTION
@@ -651,4 +690,26 @@ color: #f57c00;
 .signup-textarea-wrapper:focus-within {
   border-color: #f57c00;
   box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.08);
+} 
+
+/* =========================================
+   DESCRIPTION CHARACTER COUNTER
+   ========================================= */
+
+.description-footer {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 3px;
+
+  font-size: 8px;
+  color: #7d838f;
+}
+
+.description-footer span:last-child {
+  color: #f57c00;
+  font-weight: 600;
 }
