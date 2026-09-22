@@ -1,12 +1,11 @@
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import TrustFeaturesComponent from "../components/TrustFeaturesComponent";
-import LogoComponent from "../components/LogoComponent";
+
 import serviceCategories from "../data/services";
 import nigeriaLocations from "../data/nigeriaLocations";
 
 import "./Signup.css";
+
 import {
   UserRound,
   Phone,
@@ -25,213 +24,415 @@ import {
   Camera,
   FileText,
   Check,
+  ShieldCheck,
+  CheckCircle2,
+  Clock3,
 } from "lucide-react";
 
+import logo from "../assets/logo.webp";
+
+
+// ============================================================
+// SIGNUP PAGE
+// ============================================================
+
 function Signup() {
-const navigate = useNavigate();
-  // Which signup page are we currently on?
+  const navigate = useNavigate();
+
+  // ----------------------------------------------------------
+  // Current signup step
+  // ----------------------------------------------------------
+
   const [currentStep, setCurrentStep] = useState(1);
 
+
+  // ----------------------------------------------------------
   // Password visibility
+  // ----------------------------------------------------------
+
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState(false);
 
-  // User information
- const [formData, setFormData] = useState({
-  firstName: "",
-  lastName: "",
-  surname: "",
-  phone: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
 
-  work: {
-    category: "",
-    occupation: "",
-    experienceLevel: ""
-  },
+  // ----------------------------------------------------------
+  // Profile image preview
+  // ----------------------------------------------------------
 
-  location: {
-    country: "Nigeria",
-    state: "",
-    localGovernment: ""
-  },
+  const [profilePreview, setProfilePreview] = useState(null);
 
-  profile: {
-    image: null,
-    description: ""
-  }
-});
 
- // Handle image  changes
-function handleProfileImage(event) {
-  const file = event.target.files[0];
+  // ----------------------------------------------------------
+  // Form state
+  // ----------------------------------------------------------
 
-  if (!file) return;
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    surname: "",
+    phone: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
 
-  setFormData((previousData) => ({
-    ...previousData,
+    work: {
+      category: "",
+      occupation: "",
+      experienceLevel: "",
+    },
+
+    location: {
+      country: "Nigeria",
+      state: "",
+      localGovernment: "",
+    },
+
     profile: {
-      ...previousData.profile,
-      image: file
+      image: null,
+      description: "",
+    },
+  });
+
+
+  // ----------------------------------------------------------
+  // Create and clean up image preview URL
+  // ----------------------------------------------------------
+
+  useEffect(() => {
+    if (!formData.profile.image) {
+      setProfilePreview(null);
+      return;
     }
-  }));
-}
-  // Handle input changes
+
+    const imageUrl = URL.createObjectURL(
+      formData.profile.image
+    );
+
+    setProfilePreview(imageUrl);
+
+    return () => {
+      URL.revokeObjectURL(imageUrl);
+    };
+  }, [formData.profile.image]);
+
+
+  // ----------------------------------------------------------
+  // Handle normal inputs
+  // ----------------------------------------------------------
+
   function handleChange(event) {
-  const { name, value } = event.target;
+    const { name, value } = event.target;
 
-  // Personal information
-  if (
-    name === "firstName" ||
-    name === "lastName" ||
-    name === "surname" ||
-    name === "phone" ||
-    name === "email" ||
-    name === "password" ||
-    name === "confirmPassword"
-  ) {
-    setFormData((previousData) => ({
-      ...previousData,
-      [name]: value
-    }));
 
-    return;
-  }
-
-  // Work information
-  if (
-    name === "category" ||
-    name === "occupation" ||
-    name === "experienceLevel"
-  ) {
-    setFormData((previousData) => ({
-      ...previousData,
-      work: {
-        ...previousData.work,
+    // Personal information
+    if (
+      [
+        "firstName",
+        "lastName",
+        "surname",
+        "phone",
+        "email",
+        "password",
+        "confirmPassword",
+      ].includes(name)
+    ) {
+      setFormData((previousData) => ({
+        ...previousData,
         [name]: value,
+      }));
 
-        // If category changes, remove old occupation
-        ...(name === "category" && {
-          occupation: ""
-        })
-      }
-    }));
-
-    return;
-  }
-// Profile information
-if (name === "description") {
-  setFormData((previousData) => ({
-    ...previousData,
-    profile: {
-      ...previousData.profile,
-      description: value
+      return;
     }
-  }));
 
-  return;
-}
-  // Location information
-  if (
-    name === "country" ||
-    name === "state" ||
-    name === "localGovernment"
-  ) {
+
+    // Work information
+    if (
+      [
+        "category",
+        "occupation",
+        "experienceLevel",
+      ].includes(name)
+    ) {
+      setFormData((previousData) => ({
+        ...previousData,
+
+        work: {
+          ...previousData.work,
+
+          [name]: value,
+
+          // Reset occupation whenever category changes
+          ...(name === "category" && {
+            occupation: "",
+          }),
+        },
+      }));
+
+      return;
+    }
+
+
+    // Profile information
+    if (name === "description") {
+      setFormData((previousData) => ({
+        ...previousData,
+
+        profile: {
+          ...previousData.profile,
+          description: value,
+        },
+      }));
+
+      return;
+    }
+
+
+    // Location information
+    if (
+      [
+        "country",
+        "state",
+        "localGovernment",
+      ].includes(name)
+    ) {
+      setFormData((previousData) => ({
+        ...previousData,
+
+        location: {
+          ...previousData.location,
+
+          [name]: value,
+
+          // Reset LGA whenever state changes
+          ...(name === "state" && {
+            localGovernment: "",
+          }),
+        },
+      }));
+    }
+  }
+
+
+  // ----------------------------------------------------------
+  // Handle profile image
+  // ----------------------------------------------------------
+
+  function handleProfileImage(event) {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
     setFormData((previousData) => ({
       ...previousData,
-      location: {
-        ...previousData.location,
-        [name]: value,
 
-        // If state changes, remove old LGA
-        ...(name === "state" && {
-          localGovernment: ""
-        })
-      }
+      profile: {
+        ...previousData.profile,
+        image: file,
+      },
     }));
   }
-}
 
-  // Move from personal details to work details
+
+  // ----------------------------------------------------------
+  // Navigation
+  // ----------------------------------------------------------
+
   function handleContinue() {
-
-  if (currentStep === 1) {
-    setCurrentStep(2);
-    return;
+    if (currentStep < 3) {
+      setCurrentStep((previousStep) => previousStep + 1);
+    }
   }
 
-  if (currentStep === 2) {
-    setCurrentStep(3);
-    return;
-  }
-}
 
-  // Go back to personal details
   function handleBack() {
-
-  if (currentStep === 3) {
-    setCurrentStep(2);
-    return;
+    if (currentStep > 1) {
+      setCurrentStep((previousStep) => previousStep - 1);
+    }
   }
 
-  if (currentStep === 2) {
-    setCurrentStep(1);
-  }
-}
 
-  // Submit the complete signup form
+  // ----------------------------------------------------------
+  // Submit
+  // ----------------------------------------------------------
+
   function handleSubmit(event) {
+    event.preventDefault();
 
-  event.preventDefault();
+    console.log(
+      "SpeedXFix signup data:",
+      formData
+    );
 
-  console.log("SpeedXFix signup data:", formData);
+    // Backend signup request will eventually happen here.
+    navigate("/homepage");
+  }
 
-  // After the backend signup request succeeds,
-  // navigate the user to the homepage.
 
-  navigate("/homepage");
-}
+  // ----------------------------------------------------------
+  // Step information
+  // ----------------------------------------------------------
+
+  const steps = [
+    {
+      number: 1,
+      label: "Personal details",
+    },
+    {
+      number: 2,
+      label: "Work details",
+    },
+    {
+      number: 3,
+      label: "Your profile",
+    },
+  ];
+
+
+  // ----------------------------------------------------------
+  // Trust features
+  // ----------------------------------------------------------
+
+  const trustFeatures = [
+    {
+      icon: CheckCircle2,
+      title: "Verified professionals",
+    },
+    {
+      icon: Clock3,
+      title: "Fast & reliable",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Secure platform",
+    },
+  ];
 
 
   return (
-    <div className="containerSignup">
+    <main className="signup-page">
 
-      <div className="signupdivall">
+      {/* ======================================================
+          BACKGROUND DECORATION
+      ====================================================== */}
 
-        {/* =========================
-            TOP NAVIGATION
-        ========================= */}
+      <div className="signup-background-glow signup-glow-one" />
+      <div className="signup-background-glow signup-glow-two" />
 
-        <div className="signupdiv1">
 
-          <LogoComponent />
+      {/* ======================================================
+          TOP BAR
+      ====================================================== */}
 
-          <div className="sign-in-text-option">
-            Already have an account? <Link to="/login">
-             Sign in
-            </Link>
+      <header className="signup-header">
+
+        <Link
+          to="/"
+          className="signup-logo"
+        >
+          <img
+            src={logo}
+            alt="SpeedXFix"
+          />
+        </Link>
+
+
+        <p className="signin-prompt">
+          Already have an account?
+          <Link to="/login">
+            Sign in
+          </Link>
+        </p>
+
+      </header>
+
+
+      {/* ======================================================
+          MAIN CONTENT
+      ====================================================== */}
+
+      <section className="signup-main">
+
+        {/* ====================================================
+            LEFT INFORMATION PANEL
+        ==================================================== */}
+
+        <aside className="signup-intro">
+
+          <span className="signup-intro-badge">
+            Join SpeedXFix
+          </span>
+
+
+          <h1>
+            Turn your skills
+            <br />
+            into <span>opportunity.</span>
+          </h1>
+
+
+          <p className="signup-intro-description">
+            Create your professional profile and connect
+            with people who need the work you do.
+          </p>
+
+
+          {/* Benefits */}
+
+          <div className="signup-benefits">
+
+            {trustFeatures.map((feature) => {
+              const Icon = feature.icon;
+
+              return (
+                <div
+                  className="signup-benefit"
+                  key={feature.title}
+                >
+
+                  <div className="signup-benefit-icon">
+                    <Icon size={17} />
+                  </div>
+
+                  <span>
+                    {feature.title}
+                  </span>
+
+                </div>
+              );
+            })}
+
           </div>
 
-        </div>
+
+          <div className="signup-intro-note">
+            <span></span>
+            Your information is protected and handled securely.
+          </div>
+
+        </aside>
 
 
-        {/* =========================
-            SIGNUP FORM
-        ========================= */}
+        {/* ====================================================
+            SIGNUP CARD
+        ==================================================== */}
 
-        <div className="signupdiv2">
+        <div className="signup-card">
 
-          <div className="signup-form">
+          {/* --------------------------------------------------
+              CARD HEADER
+          -------------------------------------------------- */}
 
-            {/* TITLE */}
+          <div className="signup-card-header">
 
-            <div className="signup-heading">
+            <div>
 
-              <h1>
-                Create <span>your</span> account
-              </h1>
+              <span className="signup-card-eyebrow">
+                CREATE ACCOUNT
+              </span>
+
+              <h2>
+                Create your account
+              </h2>
 
               <p>
                 Join SpeedXFix and get any job done, fast.
@@ -239,849 +440,884 @@ if (name === "description") {
 
             </div>
 
+          </div>
 
-            {/* =========================
-                STEP INDICATOR
-            ========================= */}
 
-            <div className="signup-steps">
+          {/* ==================================================
+              STEP INDICATOR
+          ================================================== */}
 
-                {/* STEP 1 */}
+          <div className="signup-stepper">
 
+            {steps.map((step, index) => {
+
+              const isActive =
+                currentStep === step.number;
+
+              const isCompleted =
+                currentStep > step.number;
+
+              return (
                 <div
-                  className={`signup-step ${
-                    currentStep === 1
-                      ? "active"
-                      : "completed"
-                  }`}
+                  className="stepper-item-wrapper"
+                  key={step.number}
                 >
 
-                  <div className="step-circle">
-                    {currentStep === 1 ? "1" : "✓"}
-                  </div>
-
-                  <span>
-                    Personal Details
-                  </span>
-
-                </div>
-
-
-                {/* LINE 1 */}
-
-                <div
-                  className={`step-line ${
-                    currentStep >= 2
-                      ? "step-line-active"
-                      : ""
-                  }`}
-                ></div>
-
-
-                {/* STEP 2 */}
-
-                <div
-                  className={`signup-step ${
-                    currentStep === 2
-                      ? "active"
-                      : currentStep > 2
-                      ? "completed"
-                      : ""
-                  }`}
-                >
-
-                  <div className="step-circle">
-
-                    {currentStep > 2 ? "✓" : "2"}
-
-                  </div>
-
-                  <span>
-                    Work Details
-                  </span>
-
-                </div>
-
-
-                {/* LINE 2 */}
-
-                <div
-                  className={`step-line ${
-                    currentStep === 3
-                      ? "step-line-active"
-                      : ""
-                  }`}
-                ></div>
-
-
-                {/* STEP 3 */}
-
-                <div
-                  className={`signup-step ${
-                    currentStep === 3
-                      ? "active"
-                      : ""
-                  }`}
-                >
-
-                  <div className="step-circle">
-                    3
-                  </div>
-
-                  <span>
-                    Profile
-                  </span>
-
-                </div>
-
-              </div>
-
-
-            {/* =========================
-                FORM
-            ========================= */}
-
-            <form onSubmit={handleSubmit}>
-
-
-              {/* ==================================
-                  STEP 1 — PERSONAL DETAILS
-              ================================== */}
-
-              {currentStep === 1 && (
-
-                <div className="signup-step-content">
-
-                  <div className="signup-section-heading">
-
-                    <h2>
-                      Personal Details
-                    </h2>
-
-                    <p>
-                      Please provide your personal information to get started.
-                    </p>
-
-                  </div>
-
-
-                  {/* FIRST + LAST NAME */}
-
-                  <div className="signup-name-row">
-
-                    <div className="signup-input-group">
-
-                      <label>
-                        First Name
-                      </label>
-
-                      <div className="signup-input-with-icon">
-
-                        <UserRound size={17} strokeWidth={2} />
-
-                        <input
-                          type="text"
-                          name="firstName"
-                          placeholder="Enter your first name"
-                          value={formData.firstName}
-                          onChange={handleChange}
-                        />
-
-                      </div>
-
-                    </div>
-
-
-                    <div className="signup-input-group">
-
-                      <label>
-                        Last Name
-                      </label>
-
-                      <div className="signup-input-with-icon">
-
-                        <UserRound size={17} strokeWidth={2} />
-
-                        <input
-                          type="text"
-                          name="lastName"
-                          placeholder="Enter your last name"
-                          value={formData.lastName}
-                          onChange={handleChange}
-                        />
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* SURNAME */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Surname
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <UserRound size={17} strokeWidth={2} />
-
-                      <input
-                        type="text"
-                        name="surname"
-                        placeholder="Enter your surname"
-                        value={formData.surname}
-                        onChange={handleChange}
-                      />
-
-                    </div>
-
-                  </div>
-
-
-                  {/* PHONE NUMBER */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Phone Number
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                     <Phone size={17} strokeWidth={2} />
-
-                      <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Enter your phone number"
-                        value={formData.phone}
-                        onChange={handleChange}
-                      />
-
-                    </div>
-
-                  </div>
-
-
-                  {/* EMAIL */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Email Address
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <Mail size={17} strokeWidth={2} />
-
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email address"
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-
-                    </div>
-
-                  </div>
-
-
-                  {/* PASSWORD */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Password
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <Lock size={17} strokeWidth={2} />
-
-                      <input
-                        type={
-                          showPassword
-                            ? "text"
-                            : "password"
-                        }
-                        name="password"
-                        placeholder="Create a password"
-                        value={formData.password}
-                        onChange={handleChange}
-                      />
-
-                      <button
-                        type="button"
-                        className="signup-password-toggle"
-                        onClick={() =>
-                          setShowPassword(!showPassword)
-                        }
-                      >
-
-                    {showPassword ? (
-                    <EyeOff size={17} strokeWidth={2} />
-                  ) : (
-                    <Eye size={17} strokeWidth={2} />
-                  )}
-
-                      </button>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* CONFIRM PASSWORD */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Re-enter Password
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <Lock size={17} strokeWidth={2} />
-
-                      <input
-                        type={
-                          showConfirmPassword
-                            ? "text"
-                            : "password"
-                        }
-                        name="confirmPassword"
-                        placeholder="Confirm your password"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                      />
-
-                      <button
-                        type="button"
-                        className="signup-password-toggle"
-                        onClick={() =>
-                          setShowConfirmPassword(
-                            !showConfirmPassword
-                          )
-                        }
-                      >
-
-                        {showConfirmPassword ? (
-                        <EyeOff size={17} strokeWidth={2} />
+                  <div
+                    className={`stepper-item ${
+                      isActive
+                        ? "active"
+                        : isCompleted
+                        ? "completed"
+                        : ""
+                    }`}
+                  >
+
+                    <div className="stepper-circle">
+
+                      {isCompleted ? (
+                        <Check size={14} />
                       ) : (
-                        <Eye size={17} strokeWidth={2} />
+                        step.number
                       )}
 
-                      </button>
+                    </div>
+
+                    <span>
+                      {step.label}
+                    </span>
+
+                  </div>
+
+
+                  {index < steps.length - 1 && (
+                    <div
+                      className={`stepper-line ${
+                        currentStep >
+                        step.number
+                          ? "completed"
+                          : ""
+                      }`}
+                    />
+                  )}
+
+                </div>
+              );
+            })}
+
+          </div>
+
+
+          {/* ==================================================
+              FORM
+          ================================================== */}
+
+          <form
+            onSubmit={handleSubmit}
+            className="signup-form"
+          >
+
+            {/* =================================================
+                STEP 1 — PERSONAL DETAILS
+            ================================================= */}
+
+            {currentStep === 1 && (
+
+              <div className="signup-step-content">
+
+                <div className="form-section-heading">
+
+                  <h3>
+                    Personal details
+                  </h3>
+
+                  <p>
+                    Tell us a little about yourself.
+                  </p>
+
+                </div>
+
+
+                {/* Name row */}
+
+                <div className="form-row">
+
+                  <div className="form-field">
+
+                    <label htmlFor="firstName">
+                      First name
+                    </label>
+
+                    <div className="form-input">
+
+                      <UserRound size={17} />
+
+                      <input
+                        id="firstName"
+                        type="text"
+                        name="firstName"
+                        placeholder="First name"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                      />
 
                     </div>
 
                   </div>
 
 
-                  {/* CONTINUE */}
+                  <div className="form-field">
+
+                    <label htmlFor="lastName">
+                      Last name
+                    </label>
+
+                    <div className="form-input">
+
+                      <UserRound size={17} />
+
+                      <input
+                        id="lastName"
+                        type="text"
+                        name="lastName"
+                        placeholder="Last name"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                      />
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                {/* Surname */}
+
+                <div className="form-field">
+
+                  <label htmlFor="surname">
+                    Surname
+                  </label>
+
+                  <div className="form-input">
+
+                    <UserRound size={17} />
+
+                    <input
+                      id="surname"
+                      type="text"
+                      name="surname"
+                      placeholder="Enter your surname"
+                      value={formData.surname}
+                      onChange={handleChange}
+                    />
+
+                  </div>
+
+                </div>
+
+
+                {/* Phone */}
+
+                <div className="form-field">
+
+                  <label htmlFor="phone">
+                    Phone number
+                  </label>
+
+                  <div className="form-input">
+
+                    <Phone size={17} />
+
+                    <input
+                      id="phone"
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter your phone number"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+
+                  </div>
+
+                </div>
+
+
+                {/* Email */}
+
+                <div className="form-field">
+
+                  <label htmlFor="email">
+                    Email address
+                  </label>
+
+                  <div className="form-input">
+
+                    <Mail size={17} />
+
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email address"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+
+                  </div>
+
+                </div>
+
+
+                {/* Password */}
+
+                <div className="form-field">
+
+                  <label htmlFor="password">
+                    Password
+                  </label>
+
+                  <div className="form-input">
+
+                    <Lock size={17} />
+
+                    <input
+                      id="password"
+                      type={
+                        showPassword
+                          ? "text"
+                          : "password"
+                      }
+                      name="password"
+                      placeholder="Create a password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+
+                    <button
+                      type="button"
+                      className="password-toggle"
+                      onClick={() =>
+                        setShowPassword(
+                          (previous) => !previous
+                        )
+                      }
+                      aria-label={
+                        showPassword
+                          ? "Hide password"
+                          : "Show password"
+                      }
+                    >
+                      {showPassword ? (
+                        <EyeOff size={17} />
+                      ) : (
+                        <Eye size={17} />
+                      )}
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                {/* Confirm password */}
+
+                <div className="form-field">
+
+                  <label htmlFor="confirmPassword">
+                    Re-enter password
+                  </label>
+
+                  <div className="form-input">
+
+                    <Lock size={17} />
+
+                    <input
+                      id="confirmPassword"
+                      type={
+                        showConfirmPassword
+                          ? "text"
+                          : "password"
+                      }
+                      name="confirmPassword"
+                      placeholder="Confirm your password"
+                      value={
+                        formData.confirmPassword
+                      }
+                      onChange={handleChange}
+                    />
+
+                    <button
+                      type="button"
+                      className="password-toggle"
+                      onClick={() =>
+                        setShowConfirmPassword(
+                          (previous) => !previous
+                        )
+                      }
+                      aria-label={
+                        showConfirmPassword
+                          ? "Hide password"
+                          : "Show password"
+                      }
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff size={17} />
+                      ) : (
+                        <Eye size={17} />
+                      )}
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <button
+                  type="button"
+                  className="signup-primary-button"
+                  onClick={handleContinue}
+                >
+                  <span>
+                    Continue
+                  </span>
+
+                  <ArrowRight size={18} />
+                </button>
+
+              </div>
+            )}
+
+
+            {/* =================================================
+                STEP 2 — WORK DETAILS
+            ================================================= */}
+
+            {currentStep === 2 && (
+
+              <div className="signup-step-content">
+
+                <div className="form-section-heading">
+
+                  <h3>
+                    Work details
+                  </h3>
+
+                  <p>
+                    Tell us about the services you provide.
+                  </p>
+
+                </div>
+
+
+                {/* Category */}
+
+                <div className="form-field">
+
+                  <label htmlFor="category">
+                    Service category
+                  </label>
+
+                  <div className="form-input">
+
+                    <BriefcaseBusiness size={17} />
+
+                    <select
+                      id="category"
+                      name="category"
+                      value={
+                        formData.work.category
+                      }
+                      onChange={handleChange}
+                    >
+
+                      <option value="">
+                        Select your service category
+                      </option>
+
+                      {Object.keys(
+                        serviceCategories
+                      ).map((category) => (
+
+                        <option
+                          key={category}
+                          value={category}
+                        >
+                          {category}
+                        </option>
+
+                      ))}
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                {/* Occupation */}
+
+                <div className="form-field">
+
+                  <label htmlFor="occupation">
+                    Occupation
+                  </label>
+
+                  <div className="form-input">
+
+                    <HardHat size={17} />
+
+                    <select
+                      id="occupation"
+                      name="occupation"
+                      value={
+                        formData.work.occupation
+                      }
+                      onChange={handleChange}
+                      disabled={
+                        !formData.work.category
+                      }
+                    >
+
+                      <option value="">
+                        {formData.work.category
+                          ? "Select your occupation"
+                          : "Select a category first"}
+                      </option>
+
+                      {formData.work.category &&
+                        serviceCategories[
+                          formData.work.category
+                        ].map((occupation) => (
+
+                          <option
+                            key={occupation}
+                            value={occupation}
+                          >
+                            {occupation}
+                          </option>
+
+                        ))}
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                {/* Country */}
+
+                <div className="form-field">
+
+                  <label htmlFor="country">
+                    Nationality
+                  </label>
+
+                  <div className="form-input">
+
+                    <Globe size={17} />
+
+                    <select
+                      id="country"
+                      name="country"
+                      value={
+                        formData.location.country
+                      }
+                      onChange={handleChange}
+                    >
+                      <option value="Nigeria">
+                        Nigeria
+                      </option>
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                {/* State */}
+
+                <div className="form-field">
+
+                  <label htmlFor="state">
+                    State
+                  </label>
+
+                  <div className="form-input">
+
+                    <MapPin size={17} />
+
+                    <select
+                      id="state"
+                      name="state"
+                      value={
+                        formData.location.state
+                      }
+                      onChange={handleChange}
+                    >
+
+                      <option value="">
+                        Select your state
+                      </option>
+
+                      {Object.keys(
+                        nigeriaLocations
+                      ).map((state) => (
+
+                        <option
+                          key={state}
+                          value={state}
+                        >
+                          {state}
+                        </option>
+
+                      ))}
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                {/* LGA */}
+
+                <div className="form-field">
+
+                  <label htmlFor="localGovernment">
+                    Local government
+                  </label>
+
+                  <div className="form-input">
+
+                    <Building2 size={17} />
+
+                    <select
+                      id="localGovernment"
+                      name="localGovernment"
+                      value={
+                        formData.location
+                          .localGovernment
+                      }
+                      onChange={handleChange}
+                      disabled={
+                        !formData.location.state
+                      }
+                    >
+
+                      <option value="">
+                        {formData.location.state
+                          ? "Select your local government"
+                          : "Select a state first"}
+                      </option>
+
+                      {formData.location.state &&
+                        nigeriaLocations[
+                          formData.location.state
+                        ].map(
+                          (localGovernment) => (
+
+                            <option
+                              key={localGovernment}
+                              value={
+                                localGovernment
+                              }
+                            >
+                              {localGovernment}
+                            </option>
+
+                          )
+                        )}
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                {/* Experience */}
+
+                <div className="form-field">
+
+                  <label htmlFor="experienceLevel">
+                    Experience level
+                  </label>
+
+                  <div className="form-input">
+
+                    <ChartNoAxesColumnIncreasing
+                      size={17}
+                    />
+
+                    <select
+                      id="experienceLevel"
+                      name="experienceLevel"
+                      value={
+                        formData.work
+                          .experienceLevel
+                      }
+                      onChange={handleChange}
+                    >
+
+                      <option value="">
+                        Select experience level
+                      </option>
+
+                      <option value="Low Level">
+                        Beginner
+                      </option>
+
+                      <option value="Intermediate">
+                        Intermediate
+                      </option>
+
+                      <option value="High Level">
+                        Experienced
+                      </option>
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                {/* Navigation */}
+
+                <div className="signup-navigation">
 
                   <button
                     type="button"
-                    className="signup-continue-btn"
+                    className="signup-back-button"
+                    onClick={handleBack}
+                    aria-label="Go back"
+                  >
+                    <ArrowLeft size={18} />
+                  </button>
+
+
+                  <button
+                    type="button"
+                    className="signup-primary-button"
                     onClick={handleContinue}
                   >
-
                     <span>
                       Continue
                     </span>
 
-                  <ArrowRight size={20} strokeWidth={2} />
-
+                    <ArrowRight size={18} />
                   </button>
 
                 </div>
 
-              )}
+              </div>
+            )}
 
 
-              {/* ==================================
-                  STEP 2 — WORK DETAILS
-              ================================== */}
+            {/* =================================================
+                STEP 3 — PROFILE
+            ================================================= */}
 
-              {currentStep === 2 && (
+            {currentStep === 3 && (
 
-                <div className="signup-step-content">
+              <div className="signup-step-content">
 
-                  <div className="signup-section-heading">
+                <div className="form-section-heading">
 
-                    <h2>
-                      Work Details
-                    </h2>
+                  <h3>
+                    Create your profile
+                  </h3>
 
-                    <p>
-                      Tell us about your work and location.
-                    </p>
+                  <p>
+                    Help customers learn a little more
+                    about you.
+                  </p>
 
-                  </div>
+                </div>
 
 
-                  {/* CATEGORY */}
+                {/* Profile image */}
 
-                  <div className="signup-input-group">
+                <div className="profile-upload">
 
-                    <label>
-                      Service Category
-                    </label>
+                  <div className="profile-image-wrapper">
 
-                    <div className="signup-input-with-icon">
+                    <div className="profile-image">
 
-                     <BriefcaseBusiness size={17} strokeWidth={2} />
+                      {profilePreview ? (
 
-                      <select
-                        name="category"
-                        value={formData.work.category}
-                        onChange={handleChange}
-                      >
+                        <img
+                          src={profilePreview}
+                          alt="Profile preview"
+                        />
 
-                        <option value="">
-                          Select your service category
-                        </option>
+                      ) : (
 
-                        {
-                          Object.keys(serviceCategories).map(
-                            (category) => (
+                        <UserRound
+                          size={38}
+                          strokeWidth={1.5}
+                        />
 
-                              <option
-                                key={category}
-                                value={category}
-                              >
-                                {category}
-                              </option>
-
-                            )
-                          )
-                        }
-
-                      </select>
+                      )}
 
                     </div>
 
-                  </div>
 
-
-                  {/* OCCUPATION */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Occupation
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <HardHat size={17} strokeWidth={2} />
-
-                      <select
-                        name="occupation"
-                       value={formData.work.occupation}
-                        onChange={handleChange}
-                        disabled={!formData.work.category}
-                      >
-
-                        <option value="">
-                          {
-                            formData.work.category
-                              ? "Select your occupation"
-                              : "Select a category first"
-                          }
-                        </option>
-
-                        {
-                          formData.work.category &&
-                          serviceCategories[
-                          formData.work.category
-                        ].map((occupation) => (
-
-                            <option
-                              key={occupation}
-                              value={occupation}
-                            >
-                              {occupation}
-                            </option>
-
-                          ))
-                        }
-
-                      </select>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* NATIONALITY */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Nationality
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                   <Globe size={17} strokeWidth={2} />
-                      <select
-                        name="country"
-                        value={formData.location.country}
-                        onChange={handleChange}
-                      >
-
-                        <option value="Nigeria">
-                          Nigeria
-                        </option>
-
-                      </select>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* STATE */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      State
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <MapPin size={17} strokeWidth={2} />
-
-                     <select
-                            name="state"
-                            value={formData.location.state}
-                            onChange={handleChange}
-                          >
-                            <option value="">
-                              Select your state
-                            </option>
-
-                            {Object.keys(nigeriaLocations).map((state) => (
-                              <option key={state} value={state}>
-                                {state}
-                              </option>
-                            ))}
-                          </select>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* LOCAL GOVERNMENT */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Local Government
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <Building2 size={17} strokeWidth={2} />
-
-                                              <select
-                          name="localGovernment"
-                          value={formData.location.localGovernment}
-                          onChange={handleChange}
-                          disabled={!formData.location.state}
-                        >
-                          <option value="">
-                            {
-                              formData.location.state
-                                ? "Select your local government"
-                                : "Select a state first"
-                            }
-                          </option>
-
-                        {formData.location.state &&
-                        nigeriaLocations[formData.location.state].map((localGovernment) => (
-                        <option
-                          key={localGovernment}
-                          value={localGovernment}
-                        >
-                          {localGovernment}
-                        </option>
-                      ))
-                    }
-                        </select>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* EXPERIENCE */}
-
-                  <div className="signup-input-group">
-
-                    <label>
-                      Experience Level
-                    </label>
-
-                    <div className="signup-input-with-icon">
-
-                      <ChartNoAxesColumnIncreasing size={17} strokeWidth={2} />
-
-                      <select
-                        name="experienceLevel"
-                        value={formData.work.experienceLevel}
-                        onChange={handleChange}
-                      >
-
-                        <option value="">
-                          Select experience level
-                        </option>
-
-                        <option value="Low Level">
-                          Low Level
-                        </option>
-
-                        <option value="Intermediate">
-                          Intermediate
-                        </option>
-
-                        <option value="High Level">
-                          High Level
-                        </option>
-
-                      </select>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* BACK + CONTINUE */}
-
-                  <div className="signup-buttons-row">
-
-                    <button
-                      type="button"
-                      className="signup-back-btn"
-                      onClick={handleBack}
+                    <label
+                      htmlFor="profile-image"
+                      className="profile-camera"
                     >
-
-                     <ArrowLeft size={20} strokeWidth={2} />
-
-                    </button>
+                      <Camera size={15} />
+                    </label>
 
 
-                    
-                    <button
-                    type="button"
-                    className="signup-continue-btn"
-                    onClick={handleContinue} >   
-                          <span>
-                        
-                        Continue
-                         
-                      </span>
+                    <input
+                      id="profile-image"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleProfileImage}
+                      hidden
+                    />
 
-                     <ArrowRight size={20} strokeWidth={2} />
+                  </div>
 
-                    </button>
-                  
+
+                  <p>
+                    Add a clear profile photo
+                  </p>
+
+                </div>
+
+
+                {/* Description */}
+
+                <div className="form-field">
+
+                  <label htmlFor="description">
+                    About you & your work
+                  </label>
+
+                  <div className="form-textarea">
+
+                    <FileText size={17} />
+
+                    <textarea
+                      id="description"
+                      name="description"
+                      placeholder="Tell customers about your skills, experience and the work you provide..."
+                      value={
+                        formData.profile
+                          .description
+                      }
+                      onChange={handleChange}
+                      maxLength={300}
+                    />
+
+                  </div>
+
+
+                  <div className="textarea-footer">
+
+                    <span>
+                      A short introduction helps
+                      customers understand your
+                      services.
+                    </span>
+
+                    <span>
+                      {
+                        formData.profile
+                          .description.length
+                      }
+                      /300
+                    </span>
+
                   </div>
 
                 </div>
 
-              )}
 
-              {/* ==================================
-    STEP 3 — PROFILE
-================================== */}
+                {/* Navigation */}
 
-{currentStep === 3 && (
+                <div className="signup-navigation">
 
-  <div className="signup-step-content">
+                  <button
+                    type="button"
+                    className="signup-back-button"
+                    onClick={handleBack}
+                    aria-label="Go back"
+                  >
+                    <ArrowLeft size={18} />
+                  </button>
 
-    <div className="signup-section-heading">
 
-      <h2>
-        Create Your Profile
-      </h2>
+                  <button
+                    type="submit"
+                    className="signup-primary-button"
+                  >
+                    <span>
+                      Create account
+                    </span>
 
-      <p>
-        Add a photo and tell customers about yourself and your work.
-      </p>
+                    <Check size={18} />
+                  </button>
 
-    </div>
+                </div>
 
+              </div>
+            )}
 
-    {/* PROFILE IMAGE */}
+          </form>
 
-<div className="profile-upload-section">
 
-  <div className="profile-image-container">
+          {/* ==================================================
+              SECURITY NOTE
+          ================================================== */}
 
-    <div className="profile-image-preview">
+          <div className="signup-security">
 
-      {formData.profile.image ? (
+            <Lock size={13} />
 
-        <img
-          src={URL.createObjectURL(formData.profile.image)}
-          alt="Profile preview"
-        />
-
-      ) : (
-
-       <UserRound size={38} strokeWidth={1.8} />
-
-      )}
-
-    </div>
-
-
-    {/* CAMERA BUTTON */}
-
-    <label
-      htmlFor="profile-image"
-      className="profile-camera-button"
-    >
-
-     <Camera size={16} strokeWidth={2} />
-
-    </label>
-
-
-    {/* HIDDEN FILE INPUT */}
-
-    <input
-      id="profile-image"
-      type="file"
-      accept="image/*"
-      onChange={handleProfileImage}
-      hidden
-    />
-
-  </div>
-
-
-  <p className="profile-upload-hint">
-    Add a clear profile photo
-  </p>
-
-</div>
-
-
-    {/* DESCRIPTION */}
-
-<div className="signup-input-group">
-
-  <label>
-    About You & Your Work
-  </label>
-
-  <div className="signup-textarea-wrapper">
-
-    <FileText size={17} strokeWidth={2} />
-
-    <textarea
-      name="description"
-      placeholder="Tell customers about yourself, your skills and the work you provide..."
-      value={formData.profile.description}
-      onChange={handleChange}
-      maxLength={300}
-    ></textarea>
-
-  </div>
-
-  <div className="description-footer">
-
-    <span>
-      Tell customers about your skills and experience.
-    </span>
-
-    <span>
-      {formData.profile.description.length}/300
-    </span>
-
-  </div>
-
-</div>
-
-
-    {/* BACK + FINISH */}
-
-    <div className="signup-buttons-row">
-
-      <button
-        type="button"
-        className="signup-back-btn"
-        onClick={handleBack}
-      >
-
-        <ArrowLeft size={20} strokeWidth={2} />
-
-      </button>
-
-
-      <button
-        type="submit"
-        className="signup-continue-btn"
-      >
-
-        <span>
-          Create Account
-        </span>
-
-        <Check size={20} strokeWidth={2} />
-
-      </button>
-
-    </div>
-
-  </div>
-
-)}
-
-            </form>
-
-
-            {/* SECURITY MESSAGE */}
-
-            <div className="signup-security">
-
-               <Lock size={12} strokeWidth={2} />
-
-              <span>
-                Your information is secure with SpeedXFix
-              </span>
-
-            </div>
+            <span>
+              Your information is securely handled by
+              SpeedXFix.
+            </span>
 
           </div>
 
         </div>
 
+      </section>
 
-        {/* =========================
-            TRUST FEATURES
-        ========================= */}
 
-        <div className="signupdiv3">
+      {/* ======================================================
+          MOBILE TRUST STRIP
+      ====================================================== */}
 
-        <TrustFeaturesComponent />
+      <div className="signup-mobile-trust">
 
-        </div>
+        {trustFeatures.map((feature) => {
+          const Icon = feature.icon;
+
+          return (
+            <div
+              key={feature.title}
+              className="mobile-trust-item"
+            >
+              <Icon size={15} />
+              <span>
+                {feature.title}
+              </span>
+            </div>
+          );
+        })}
 
       </div>
 
-    </div>
+    </main>
   );
 }
 
