@@ -317,7 +317,7 @@ export default function Profile() {
 
 
       {/* BOTTOM NAVIGATION */}
-      <nav className="bottom-nav">
+      <nav className="bottom-nav profile-bottom-nav">
 
         {navItems.map((item) => {
 

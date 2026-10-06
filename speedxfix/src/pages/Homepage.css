@@ -71,7 +71,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .drawer.open { transform: none; }
 .drawer-top { display: flex; align-items: center; justify-content: space-between; padding: 0 4px 12px; border-bottom: 1px solid var(--line); }
-.drawer-links { display: flex; flex-direction: column; gap: 2px; padding: 12px 0; overflow-y: auto; flex: 1; }
+.drawer-links { display: flex; flex-direction: column; gap: 2px; padding: 12px 0; overflow-y: auto; flex: 1 1 auto; min-height: 0; }
 .drawer-links button, .drawer-logout {
   display: flex; align-items: center; gap: 13px; width: 100%;
   padding: 12px; border: 0; border-radius: 11px; background: transparent;
@@ -370,11 +370,27 @@ h1, h2, h3, p { margin: 0; }
   .soft-btn span { display: none; } .soft-btn { padding: 10px; }
   .menu-item { padding: 13px 16px; gap: 12px; } .menu-item strong { font-size: 14px; } .menu-item small { font-size: 12px; }
   .row-card { padding: 12px; gap: 10px; }
+
+  /* Drawer: tighten spacing so Sign out + social links stay visible on small screens */
+  .drawer { padding: 12px 12px 14px; }
+  .drawer-top { padding-bottom: 10px; }
+  .drawer-links { padding: 8px 0; gap: 0; }
+  .drawer-links button { padding: 10px; font-size: 14px; }
+  .drawer-logout { padding-top: 12px; padding-bottom: 10px; font-size: 14px; }
+  .drawer-social { padding: 10px 4px 0; }
+  .drawer-social-label { margin-bottom: 7px; }
   .bottom-nav { bottom: 9px; width: calc(100% - 18px); height: 62px; }
   .bottom-nav button { height: 52px; } .bottom-nav button span { font-size: 10px; }
 }
 @media (max-width: 380px) {
   .hero-text h2 { font-size: 28px; }
   .quick-row { gap: 7px; } .quick-item { font-size: 11px; padding: 12px 4px; }
+}
+/* Short viewports (small phones / open URL bar): keep Sign out + social on screen,
+   the link list scrolls instead of pushing them out of the drawer. */
+@media (max-height: 680px) {
+  .drawer-links button { padding: 9px 10px; font-size: 14px; }
+  .drawer-logout { padding-top: 10px; padding-bottom: 8px; }
+  .drawer-social { padding-top: 8px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
